@@ -1,159 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethlink | Omni Vault Protocol</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg: #030406; --accent: #6366f1; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: #f8fafc; scroll-behavior: smooth; }
-        
-        /* Professional Glassmorphism */
-        .nav-blur { backdrop-filter: saturate(180%) blur(20px); background: rgba(3, 4, 6, 0.7); }
-        .glass-panel { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .glass-panel:hover { border-color: rgba(99, 102, 241, 0.3); background: rgba(255, 255, 255, 0.04); transform: translateY(-2px); }
+    <title>Ethlink | Building the Omni Vault</title>
+    
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 
-        /* Smooth Gradient Text */
-        .text-gradient { background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.5) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* Subtle Glow Animation */
-        .glow-sphere { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%); z-index: -1; pointer-events: none; }
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#ffffff',
+                            dark: '#020305',
+                            primary: '#6366f1'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s ease, color 0.3s ease; }
+        .grid-bg { background-image: radial-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px); background-size: 32px 32px; }
+        .glass-panel { backdrop-filter: blur(16px); }
+        .dark .glass-panel { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .light .glass-panel { background: rgba(0, 0, 0, 0.02); border: 1px solid rgba(0, 0, 0, 0.08); }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden">
+<body class="antialiased overflow-x-hidden grid-bg bg-white text-slate-900 dark:bg-[#020305] dark:text-slate-100">
 
-    <div class="glow-sphere top-[-200px] left-[-100px]"></div>
-    <div class="glow-sphere bottom-[-200px] right-[-100px]"></div>
-
-    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+    <nav class="fixed top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-[#020305]/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-600/30">E</div>
-                <span class="text-xl font-extrabold tracking-tight uppercase">Ethlink</span>
+                <div class="w-8 h-8 bg-indigo-600 rounded flex items-center justify-center font-extrabold text-white text-sm shadow-lg shadow-indigo-600/20">E</div>
+                <span class="text-sm font-bold tracking-[0.3em] uppercase">Ethlink</span>
             </div>
             
-            <div class="hidden md:flex items-center gap-10 text-[13px] font-semibold uppercase tracking-widest text-gray-400">
-                <a href="#protocol" class="hover:text-white transition">Protocol</a>
-                <a href="#reserve" class="hover:text-white transition">Reserve</a>
-                <a href="#governance" class="hover:text-white transition">Governance</a>
-                <a href="#docs" class="hover:text-white transition">Docs</a>
-            </div>
-
-            <div class="flex items-center gap-4">
-                <button class="hidden sm:block text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white px-4">Log In</button>
-                <a href="#prototype" class="bg-white text-black px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-indigo-50 transition transform active:scale-95">
-                    Enter App
-                </a>
+            <div class="flex items-center gap-6">
+                <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-slate-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 transition">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                </button>
+                <button class="bg-indigo-600 text-white px-6 py-2.5 rounded text-[11px] font-bold uppercase tracking-widest hover:bg-indigo-700 transition transform active:scale-95 shadow-lg shadow-indigo-600/20">Request Access</button>
             </div>
         </div>
     </nav>
 
-    <section class="relative pt-48 pb-24 px-6">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <div class="text-left">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400 mb-8">
-                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
-                    The All-Weather Protocol
-                </div>
-                <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter mb-8 leading-[1] text-gradient">
-                    Secure <br>Stability.
+    <section class="relative pt-48 pb-24 px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+                <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter mb-10 leading-[0.9] text-slate-900 dark:text-white">
+                    Building the <br><span class="text-indigo-600">Future Reserve.</span>
                 </h1>
-                <p class="text-gray-400 text-lg md:text-xl mb-12 max-w-lg leading-relaxed">
-                    Omni USD (OUSD) is a multi-asset stablecoin that maintains purchasing power through an algorithmic balance of Gold, Equities, and Fiat.
+                <p class="text-slate-600 dark:text-gray-400 text-lg mb-12 max-w-lg">
+                    Ethlink is engineering <b>OUSD</b>—the first multi-asset stablecoin collateralized by an autonomous basket of Gold, AED, and Global Equities.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-5">
-                    <button class="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-bold text-sm uppercase tracking-widest shadow-2xl shadow-indigo-600/30 hover:bg-indigo-500 transition-all">
-                        Mint OUSD
-                    </button>
-                    <a href="#prototype" class="glass-panel px-10 py-4 rounded-2xl font-bold text-sm uppercase tracking-widest flex items-center justify-center gap-3">
-                        Launch Demo <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="glass-panel p-6 rounded-2xl">
+                        <p class="text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-2">Stability</p>
+                        <p class="text-sm font-semibold">Gold-Hardened</p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl">
+                        <p class="text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-2">Growth</p>
+                        <p class="text-sm font-semibold">Equity-Backed</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="relative group">
-                <div class="absolute inset-0 bg-indigo-500/10 blur-[100px] group-hover:bg-indigo-500/20 transition-all"></div>
-                <div class="glass-panel p-8 rounded-[2.5rem] relative">
-                    <div class="flex justify-between items-center mb-10">
-                        <div>
-                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Total Value Locked</p>
-                            <h2 class="text-3xl font-bold tracking-tight">$42,850,200</h2>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-1">Yield (APY)</p>
-                            <h2 class="text-3xl font-bold text-green-400 tracking-tight">4.2%</h2>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-6">
-                        <div class="space-y-2">
-                            <div class="flex justify-between text-[11px] font-bold uppercase tracking-widest text-gray-400">
-                                <span>Gold Reserves</span><span>30%</span>
-                            </div>
-                            <div class="h-1.5 bg-white/5 rounded-full"><div class="h-full bg-yellow-500 rounded-full w-[30%]"></div></div>
-                        </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between text-[11px] font-bold uppercase tracking-widest text-gray-400">
-                                <span>RWA Equities</span><span>30%</span>
-                            </div>
-                            <div class="h-1.5 bg-white/5 rounded-full"><div class="h-full bg-purple-500 rounded-full w-[30%]"></div></div>
-                        </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between text-[11px] font-bold uppercase tracking-widest text-gray-400">
-                                <span>Liquidity (USDC/AED)</span><span>40%</span>
-                            </div>
-                            <div class="h-1.5 bg-white/5 rounded-full"><div class="h-full bg-blue-500 rounded-full w-[40%]"></div></div>
-                        </div>
-                    </div>
+            <div class="glass-panel p-8 rounded-[2.5rem] bg-slate-50 dark:bg-[#0b0e14]">
+                <div class="flex items-center justify-between mb-8 text-[10px] font-mono text-slate-400">
+                    <span>STATUS: BUILDING</span>
+                    <span class="text-indigo-600">ALPHA_V1</span>
+                </div>
+                <div class="bg-white dark:bg-black/40 rounded-xl p-6 font-mono text-sm border border-slate-200 dark:border-white/5 shadow-inner">
+                    <p class="text-indigo-600 font-bold">// Rebalancing Vault...</p>
+                    <p class="mt-2 text-slate-500">Basket.weight('Gold', 0.30);</p>
+                    <p class="text-slate-500">Basket.weight('AAPL', 0.15);</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="protocol" class="max-w-7xl mx-auto px-6 py-24">
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="glass-panel p-10 rounded-[2rem]">
-                <div class="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center text-indigo-400 mb-8 font-bold">01</div>
-                <h3 class="text-xl font-bold mb-4 tracking-tight">Institutional RWA</h3>
-                <p class="text-gray-400 text-sm leading-relaxed font-medium">Mint stablecoins directly against tokenized equity from global leaders like Apple and Tesla via Ondo Finance.</p>
-            </div>
-            <div class="glass-panel p-10 rounded-[2rem]">
-                <div class="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center text-indigo-400 mb-8 font-bold">02</div>
-                <h3 class="text-xl font-bold mb-4 tracking-tight">Inflation Hedge</h3>
-                <p class="text-gray-400 text-sm leading-relaxed font-medium">Your dollar is "hardened" by a 30% gold reserve, ensuring it maintains its purchasing power even when fiat fluctuates.</p>
-            </div>
-            <div class="glass-panel p-10 rounded-[2rem]">
-                <div class="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center text-indigo-400 mb-8 font-bold">03</div>
-                <h3 class="text-xl font-bold mb-4 tracking-tight">Dynamic Rebalancing</h3>
-                <p class="text-gray-400 text-sm leading-relaxed font-medium">The Omni Vault uses autonomous smart contracts to maintain the 40/30/30 split, capturing market growth automatically.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="prototype" class="max-w-7xl mx-auto px-6 py-32 text-center">
-        <div class="glass-panel py-24 px-10 rounded-[3rem] border-indigo-500/20 overflow-hidden relative">
-            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-indigo-600/5 to-transparent"></div>
-            <h2 class="text-4xl md:text-5xl font-bold mb-8 tracking-tighter">Ready to enter the Vault?</h2>
-            <p class="text-gray-400 mb-12 max-w-xl mx-auto font-medium">Be among the first to test the OUSD protocol on our staging network.</p>
-            <button class="bg-white text-black px-12 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-gray-200 transition">
-                Start Demo Now
-            </button>
-        </div>
-    </section>
-
-    <footer class="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-        <div class="flex items-center gap-3">
-            <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center font-bold text-xs">E</div>
-            <span class="text-xs font-bold uppercase tracking-widest opacity-50">Ethlink Tech Labs</span>
-        </div>
-        <div class="flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
-            <a href="#" class="hover:text-white transition">Twitter</a>
-            <a href="#" class="hover:text-white transition">Discord</a>
-            <a href="#" class="hover:text-white transition">Privacy</a>
-        </div>
+    <footer class="max-w-7xl mx-auto px-8 py-16 border-t border-slate-200 dark:border-white/5 flex justify-between items-center">
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em] opacity-50">Ethlink Tech Labs</span>
+        <a href="mailto:support@ethlink.tech" class="text-sm text-slate-500 hover:text-indigo-600 transition">support@ethlink.tech</a>
     </footer>
 
+    <script>
+        var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Initial setup based on current theme
+        if (document.documentElement.classList.contains('dark')) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        var themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
