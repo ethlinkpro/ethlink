@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethlink | Building the Omni Vault</title>
+    <title>Ethlink | Omni Vault Protocol</title>
     
     <script>
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
@@ -14,125 +14,145 @@
     </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        brand: {
-                            light: '#ffffff',
-                            dark: '#020305',
-                            primary: '#6366f1'
-                        }
-                    }
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: { brand: { indigo: '#6366f1', darkness: '#020305' } }
                 }
             }
         }
     </script>
 
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s ease, color 0.3s ease; }
-        .grid-bg { background-image: radial-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px); background-size: 32px 32px; }
-        .glass-panel { backdrop-filter: blur(16px); }
-        .dark .glass-panel { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .light .glass-panel { background: rgba(0, 0, 0, 0.02); border: 1px solid rgba(0, 0, 0, 0.08); }
+        body { transition: background-color 0.4s ease; -webkit-font-smoothing: antialiased; }
+        .grid-blueprint { background-image: radial-gradient(rgba(99, 102, 241, 0.06) 1px, transparent 1px); background-size: 32px 32px; }
+        .tabular { font-variant-numeric: tabular-nums lining-nums; }
+        .glass-panel { backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.7); }
+        .dark .glass-panel { border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
+        .roadmap-line { border-left: 1px solid rgba(99, 102, 241, 0.2); }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden grid-bg bg-white text-slate-900 dark:bg-[#020305] dark:text-slate-100">
+<body class="grid-blueprint bg-white text-slate-900 dark:bg-brand-darkness dark:text-slate-100">
 
-    <nav class="fixed top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-[#020305]/80 backdrop-blur-md">
+    <nav class="fixed top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-brand-darkness/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-indigo-600 rounded flex items-center justify-center font-extrabold text-white text-sm shadow-lg shadow-indigo-600/20">E</div>
+                <div class="w-8 h-8 bg-indigo-600 rounded flex items-center justify-center font-extrabold text-white text-sm">E</div>
                 <span class="text-sm font-bold tracking-[0.3em] uppercase">Ethlink</span>
             </div>
             
             <div class="flex items-center gap-6">
-                <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-slate-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 transition">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                <button id="theme-toggle" class="p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition duration-300">
+                    <svg id="theme-icon-dark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-icon-light" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
                 </button>
-                <button class="bg-indigo-600 text-white px-6 py-2.5 rounded text-[11px] font-bold uppercase tracking-widest hover:bg-indigo-700 transition transform active:scale-95 shadow-lg shadow-indigo-600/20">Request Access</button>
+                <a href="mailto:support@ethlink.tech" class="bg-indigo-600 text-white px-7 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/20 active:scale-95">Request Access</a>
             </div>
         </div>
     </nav>
 
-    <section class="relative pt-48 pb-24 px-8 max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-20 items-center">
-            <div>
-                <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter mb-10 leading-[0.9] text-slate-900 dark:text-white">
-                    Building the <br><span class="text-indigo-600">Future Reserve.</span>
+    <section class="relative pt-48 pb-32 px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-24 items-center">
+            <div class="text-left">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-10">
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                    Development Phase: Omni Vault Alpha
+                </div>
+                <h1 class="text-6xl md:text-[5.5rem] font-extrabold tracking-tighter mb-10 leading-[0.9] text-slate-900 dark:text-white">
+                    Stabilizing <br><span class="text-indigo-600">Global Value.</span>
                 </h1>
-                <p class="text-slate-600 dark:text-gray-400 text-lg mb-12 max-w-lg">
-                    Ethlink is engineering <b>OUSD</b>—the first multi-asset stablecoin collateralized by an autonomous basket of Gold, USD, AED, and Global Equities.
+                <p class="text-slate-500 dark:text-gray-400 text-lg md:text-xl mb-12 max-w-lg leading-relaxed font-medium">
+                    Engineering <b>OUSD</b>—a multi-asset stablecoin collateralized by an autonomous basket of Gold, <b>USD/AED</b> liquidity, and Global Equities. 
                 </p>
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="glass-panel p-6 rounded-2xl">
-                        <p class="text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-2">Stability</p>
-                        <p class="text-sm font-semibold">Gold-Hardened</p>
-                    </div>
-                    <div class="glass-panel p-6 rounded-2xl">
-                        <p class="text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-2">Growth</p>
-                        <p class="text-sm font-semibold">Equity-Backed</p>
-                    </div>
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <a href="mailto:support@ethlink.tech" class="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition">
+                        Join Waitlist
+                    </a>
+                    <button onclick="alert('The Omni Vault Simulation is currently in private staging. Stay tuned for our public release.')" class="glass-panel px-10 py-4 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] hover:bg-indigo-600/5 transition">
+                        View Demo
+                    </button>
                 </div>
             </div>
 
-            <div class="glass-panel p-8 rounded-[2.5rem] bg-slate-50 dark:bg-[#0b0e14]">
-                <div class="flex items-center justify-between mb-8 text-[10px] font-mono text-slate-400">
-                    <span>STATUS: BUILDING</span>
-                    <span class="text-indigo-600">ALPHA_V1</span>
-                </div>
-                <div class="bg-white dark:bg-black/40 rounded-xl p-6 font-mono text-sm border border-slate-200 dark:border-white/5 shadow-inner">
-                    <p class="text-indigo-600 font-bold">// Rebalancing Vault...</p>
-                    <p class="mt-2 text-slate-500">Basket.weight('Gold', 0.30);</p>
-                    <p class="text-slate-500">Basket.weight('AAPL', 0.15);</p>
+            <div class="glass-panel p-1 rounded-[2.5rem] relative group">
+                <div class="bg-white/40 dark:bg-[#0b0e14] p-10 rounded-[2.3rem] shadow-2xl">
+                    <div class="flex justify-between items-center mb-10 text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">
+                        <span>Vault_Core::v1.0.4</span>
+                        <span class="text-indigo-600">Status::Compiling</span>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-black/40 rounded-2xl p-8 font-mono text-[13px] text-slate-500 dark:text-gray-400 leading-relaxed border border-slate-200 dark:border-white/5 shadow-inner">
+                        <p class="text-indigo-600 font-bold mb-4">// SETTING_RESERVE_WEIGHTS</p>
+                        <p class="tabular">Gold_Reserve.ratio = 0.30;</p>
+                        <p class="tabular">Equity_RWA.ratio = 0.30;</p>
+                        <p class="tabular text-indigo-500 font-bold">Liquid_USD_AED.ratio = 0.40;</p>
+                        <div class="mt-6 pt-6 border-t border-slate-200 dark:border-white/5">
+                            <p class="text-green-500 font-bold tracking-widest">// VALIDATION_PASSED</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="max-w-7xl mx-auto px-8 py-16 border-t border-slate-200 dark:border-white/5 flex justify-between items-center">
-        <span class="text-[10px] font-bold uppercase tracking-[0.3em] opacity-50">Ethlink Tech Labs</span>
-        <a href="mailto:support@ethlink.tech" class="text-sm text-slate-500 hover:text-indigo-600 transition">support@ethlink.tech</a>
+    <section class="max-w-7xl mx-auto px-8 pb-40">
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-panel p-12 rounded-[2.5rem] group">
+                <div class="w-12 h-12 bg-indigo-600/10 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition">📈</div>
+                <h3 class="text-sm font-extrabold mb-4 uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">Equity Liquidity</h3>
+                <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">
+                    Unlock capital from whitelisted blue-chip equities. Mint <b>OUSD</b> against tokenized shares of global industry leaders.
+                </p>
+            </div>
+            <div class="glass-panel p-12 rounded-[2.5rem] group">
+                <div class="w-12 h-12 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition">🏆</div>
+                <h3 class="text-sm font-extrabold mb-4 uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">Gold Hardened</h3>
+                <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">
+                    A 30% physical gold reserve provides a sovereign-grade hedge, ensuring your stablecoin preserves purchasing power.
+                </p>
+            </div>
+            <div class="glass-panel p-12 rounded-[2.5rem] group">
+                <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition">⚙️</div>
+                <h3 class="text-sm font-extrabold mb-4 uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">Dual-Peg Strategy</h3>
+                <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">
+                    Leveraging deep <b>USD and AED</b> liquidity pools to provide instant interoperability and 1:1 redemption at scale.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="max-w-7xl mx-auto px-8 py-20 border-t border-slate-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-12">
+        <div class="flex items-center gap-3 opacity-60">
+            <div class="w-6 h-6 bg-slate-900 dark:bg-white rounded flex items-center justify-center font-black text-[10px] text-white dark:text-black">E</div>
+            <span class="text-[10px] font-bold uppercase tracking-[0.4em]">Ethlink Tech Labs</span>
+        </div>
+        <a href="mailto:support@ethlink.tech" class="text-xs font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all">support@ethlink.tech</a>
+        <div class="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30 tabular">
+            &copy; 2026_STABLE_V1
+        </div>
     </footer>
 
     <script>
-        var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const toggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-icon-dark');
+        const lightIcon = document.getElementById('theme-icon-light');
 
-        // Initial setup based on current theme
-        if (document.documentElement.classList.contains('dark')) {
-            themeToggleLightIcon.classList.remove('hidden');
-        } else {
-            themeToggleDarkIcon.classList.remove('hidden');
-        }
+        if (document.documentElement.classList.contains('dark')) { lightIcon.classList.remove('hidden'); } 
+        else { darkIcon.classList.remove('hidden'); }
 
-        var themeToggleBtn = document.getElementById('theme-toggle');
-
-        themeToggleBtn.addEventListener('click', function() {
-            themeToggleDarkIcon.classList.toggle('hidden');
-            themeToggleLightIcon.classList.toggle('hidden');
-
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
+        toggleBtn.addEventListener('click', () => {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
             } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
             }
         });
     </script>
