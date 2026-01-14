@@ -3,91 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethlink | The All-Weather Stablecoin</title>
+    <title>Ethlink | Omni Vault Protocol</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #020408; color: #ffffff; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .gradient-text { background: linear-gradient(90deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-bg { background: radial-gradient(circle at 50% -20%, rgba(99, 102, 241, 0.15) 0%, rgba(2, 4, 8, 0) 70%); }
+        :root { --bg: #030406; --accent: #6366f1; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: #f8fafc; scroll-behavior: smooth; }
+        
+        /* Professional Glassmorphism */
+        .nav-blur { backdrop-filter: saturate(180%) blur(20px); background: rgba(3, 4, 6, 0.7); }
+        .glass-panel { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .glass-panel:hover { border-color: rgba(99, 102, 241, 0.3); background: rgba(255, 255, 255, 0.04); transform: translateY(-2px); }
+
+        /* Smooth Gradient Text */
+        .text-gradient { background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.5) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Subtle Glow Animation */
+        .glow-sphere { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%); z-index: -1; pointer-events: none; }
     </style>
 </head>
-<body class="antialiased hero-bg min-h-screen">
+<body class="antialiased overflow-x-hidden">
 
-    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-        <div class="flex items-center gap-2 group">
-            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-bold text-lg shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition">E</div>
-            <span class="text-xl font-extrabold tracking-tight">ETHLINK</span>
+    <div class="glow-sphere top-[-200px] left-[-100px]"></div>
+    <div class="glow-sphere bottom-[-200px] right-[-100px]"></div>
+
+    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-600/30">E</div>
+                <span class="text-xl font-extrabold tracking-tight uppercase">Ethlink</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-10 text-[13px] font-semibold uppercase tracking-widest text-gray-400">
+                <a href="#protocol" class="hover:text-white transition">Protocol</a>
+                <a href="#reserve" class="hover:text-white transition">Reserve</a>
+                <a href="#governance" class="hover:text-white transition">Governance</a>
+                <a href="#docs" class="hover:text-white transition">Docs</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button class="hidden sm:block text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white px-4">Log In</button>
+                <a href="#prototype" class="bg-white text-black px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-indigo-50 transition transform active:scale-95">
+                    Enter App
+                </a>
+            </div>
         </div>
-        <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-            <a href="#vault" class="hover:text-white transition">Omni Vault</a>
-            <a href="#reserve" class="hover:text-white transition">Reserve</a>
-            <a href="#team" class="hover:text-white transition">Team</a>
-        </div>
-        <a href="#prototype" class="glass px-6 py-2 rounded-full text-sm font-semibold hover:bg-white/10 transition border border-white/20">
-            Launch Prototype
-        </a>
     </nav>
 
-    <section class="max-w-7xl mx-auto px-8 pt-24 pb-32 text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold mb-8">
-            <span class="flex h-2 w-2 relative">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-            </span>
-            OMNI USD (OUSD) NOW IN DEVELOPMENT
-        </div>
-        <h1 class="text-5xl md:text-8xl font-black mb-8 leading-[1.1] tracking-tighter">
-            The World's First <br><span class="gradient-text">All-Weather Dollar</span>
-        </h1>
-        <p class="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-            Stable liquidity backed by a balanced reserve of Gold, AED, and Blue-chip Equities. Zero inflation. Fully on-chain.
-        </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <button class="bg-indigo-600 hover:bg-indigo-500 px-10 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-indigo-600/20 transition-all hover:scale-105">
-                Whitepaper
-            </button>
-            <a href="#prototype" class="glass px-10 py-4 rounded-2xl font-bold text-lg hover:bg-white/5 transition flex items-center justify-center gap-2">
-                <span>Try Demo</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </a>
-        </div>
-    </section>
-
-    <section id="reserve" class="max-w-7xl mx-auto px-8 py-20 border-t border-white/5">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="text-3xl font-bold mb-6">Diversified by Design</h2>
-                <p class="text-gray-400 mb-8 leading-relaxed">Unlike traditional stablecoins tied to a single currency, OUSD uses the <b>Omni Vault</b> to maintain a "Balance Effect" across asset classes.</p>
-                <div class="space-y-6">
-                    <div class="glass p-4 rounded-2xl border-l-4 border-l-yellow-500">
-                        <div class="flex justify-between font-bold mb-1"><span>Gold (PAXG)</span><span>30%</span></div>
-                        <p class="text-xs text-gray-500">Protection against fiat devaluation.</p>
-                    </div>
-                    <div class="glass p-4 rounded-2xl border-l-4 border-l-blue-500">
-                        <div class="flex justify-between font-bold mb-1"><span>Liquid (USDC/AED)</span><span>40%</span></div>
-                        <p class="text-xs text-gray-500">Ensuring T+0 liquidity for payments.</p>
-                    </div>
-                    <div class="glass p-4 rounded-2xl border-l-4 border-l-purple-500">
-                        <div class="flex justify-between font-bold mb-1"><span>Equities (Ondo RWA)</span><span>30%</span></div>
-                        <p class="text-xs text-gray-500">Yield from AAPL, TSLA, and SPY.</p>
-                    </div>
+    <section class="relative pt-48 pb-24 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400 mb-8">
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                    The All-Weather Protocol
+                </div>
+                <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter mb-8 leading-[1] text-gradient">
+                    Secure <br>Stability.
+                </h1>
+                <p class="text-gray-400 text-lg md:text-xl mb-12 max-w-lg leading-relaxed">
+                    Omni USD (OUSD) is a multi-asset stablecoin that maintains purchasing power through an algorithmic balance of Gold, Equities, and Fiat.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <button class="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-bold text-sm uppercase tracking-widest shadow-2xl shadow-indigo-600/30 hover:bg-indigo-500 transition-all">
+                        Mint OUSD
+                    </button>
+                    <a href="#prototype" class="glass-panel px-10 py-4 rounded-2xl font-bold text-sm uppercase tracking-widest flex items-center justify-center gap-3">
+                        Launch Demo <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
                 </div>
             </div>
-            <div class="glass p-1 rounded-[2.5rem] shadow-2xl shadow-indigo-500/10">
-                <div class="bg-[#0b0e14] rounded-[2.3rem] p-10 text-center">
-                    <div class="text-6xl mb-6">🛡️</div>
-                    <h3 class="text-2xl font-bold mb-4">Real-Time Proof of Reserve</h3>
-                    <p class="text-gray-500 text-sm mb-8 italic">"Our oracles monitor every asset in the vault to ensure OUSD is always 100%+ collateralized."</p>
-                    <div class="grid grid-cols-2 gap-4 text-left">
-                        <div class="bg-white/5 p-4 rounded-xl">
-                            <p class="text-[10px] uppercase font-bold text-gray-500">OUSD Supply</p>
-                            <p class="text-xl font-mono">$1,240,500</p>
+
+            <div class="relative group">
+                <div class="absolute inset-0 bg-indigo-500/10 blur-[100px] group-hover:bg-indigo-500/20 transition-all"></div>
+                <div class="glass-panel p-8 rounded-[2.5rem] relative">
+                    <div class="flex justify-between items-center mb-10">
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Total Value Locked</p>
+                            <h2 class="text-3xl font-bold tracking-tight">$42,850,200</h2>
                         </div>
-                        <div class="bg-white/5 p-4 rounded-xl">
-                            <p class="text-[10px] uppercase font-bold text-gray-500">Vault Assets</p>
-                            <p class="text-xl font-mono">$1,310,000</p>
+                        <div class="text-right">
+                            <p class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-1">Yield (APY)</p>
+                            <h2 class="text-3xl font-bold text-green-400 tracking-tight">4.2%</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-[11px] font-bold uppercase tracking-widest text-gray-400">
+                                <span>Gold Reserves</span><span>30%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full"><div class="h-full bg-yellow-500 rounded-full w-[30%]"></div></div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-[11px] font-bold uppercase tracking-widest text-gray-400">
+                                <span>RWA Equities</span><span>30%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full"><div class="h-full bg-purple-500 rounded-full w-[30%]"></div></div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-[11px] font-bold uppercase tracking-widest text-gray-400">
+                                <span>Liquidity (USDC/AED)</span><span>40%</span>
+                            </div>
+                            <div class="h-1.5 bg-white/5 rounded-full"><div class="h-full bg-blue-500 rounded-full w-[40%]"></div></div>
                         </div>
                     </div>
                 </div>
@@ -95,19 +112,47 @@
         </div>
     </section>
 
-    <section id="prototype" class="max-w-7xl mx-auto px-8 py-32 text-center">
-        <div class="glass p-16 rounded-[3rem] border-indigo-500/20">
-            <h2 class="text-4xl font-bold mb-4 italic">Interactive Demo</h2>
-            <p class="text-gray-400 mb-10">Test the flow of minting OUSD with dummy stocks and gold.</p>
-            <button class="bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 px-8 py-3 rounded-full font-bold animate-pulse">
-                Coming Soon
+    <section id="protocol" class="max-w-7xl mx-auto px-6 py-24">
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-panel p-10 rounded-[2rem]">
+                <div class="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center text-indigo-400 mb-8 font-bold">01</div>
+                <h3 class="text-xl font-bold mb-4 tracking-tight">Institutional RWA</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-medium">Mint stablecoins directly against tokenized equity from global leaders like Apple and Tesla via Ondo Finance.</p>
+            </div>
+            <div class="glass-panel p-10 rounded-[2rem]">
+                <div class="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center text-indigo-400 mb-8 font-bold">02</div>
+                <h3 class="text-xl font-bold mb-4 tracking-tight">Inflation Hedge</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-medium">Your dollar is "hardened" by a 30% gold reserve, ensuring it maintains its purchasing power even when fiat fluctuates.</p>
+            </div>
+            <div class="glass-panel p-10 rounded-[2rem]">
+                <div class="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center text-indigo-400 mb-8 font-bold">03</div>
+                <h3 class="text-xl font-bold mb-4 tracking-tight">Dynamic Rebalancing</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-medium">The Omni Vault uses autonomous smart contracts to maintain the 40/30/30 split, capturing market growth automatically.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="prototype" class="max-w-7xl mx-auto px-6 py-32 text-center">
+        <div class="glass-panel py-24 px-10 rounded-[3rem] border-indigo-500/20 overflow-hidden relative">
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-indigo-600/5 to-transparent"></div>
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 tracking-tighter">Ready to enter the Vault?</h2>
+            <p class="text-gray-400 mb-12 max-w-xl mx-auto font-medium">Be among the first to test the OUSD protocol on our staging network.</p>
+            <button class="bg-white text-black px-12 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-gray-200 transition">
+                Start Demo Now
             </button>
         </div>
     </section>
 
-    <footer class="text-center py-20 border-t border-white/5 text-gray-600 text-sm">
-        <div class="mb-6 font-bold text-white tracking-widest uppercase">Ethlink Tech Labs</div>
-        <p>&copy; 2026 Ethlink.tech | Bridging SME Equity with On-chain Stability.</p>
+    <footer class="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center font-bold text-xs">E</div>
+            <span class="text-xs font-bold uppercase tracking-widest opacity-50">Ethlink Tech Labs</span>
+        </div>
+        <div class="flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+            <a href="#" class="hover:text-white transition">Twitter</a>
+            <a href="#" class="hover:text-white transition">Discord</a>
+            <a href="#" class="hover:text-white transition">Privacy</a>
+        </div>
     </footer>
 
 </body>
