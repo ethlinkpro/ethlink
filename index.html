@@ -136,25 +136,82 @@
         </div>
     </footer>
 
-    <script>
-        const toggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-icon-dark');
-        const lightIcon = document.getElementById('theme-icon-light');
+  <script>
+    /** * 1. TERMINAL ANIMATION LOGIC 
+     * Cycles text every 10 seconds with a professional fade effect
+     */
+    const versions = [
+        "Vault_Core::v1.0.4",
+        "Security::Patch_0.9",
+        "Oracle::Logic_v3.1",
+        "Module::RWA_Staging"
+    ];
+    
+    const statuses = [
+        "Status::Compiling",
+        "Status::Verifying_RWA",
+        "Status::Calibrating_NAV",
+        "Status::Syncing_Gold"
+    ];
 
-        if (document.documentElement.classList.contains('dark')) { lightIcon.classList.remove('hidden'); } 
-        else { darkIcon.classList.remove('hidden'); }
+    let currentIndex = 0;
+    const versionEl = document.getElementById('terminal-version');
+    const statusEl = document.getElementById('terminal-status');
 
-        toggleBtn.addEventListener('click', () => {
-            darkIcon.classList.toggle('hidden');
-            lightIcon.classList.toggle('hidden');
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-    </script>
+    function animateTerminal() {
+        currentIndex = (currentIndex + 1) % versions.length;
+        
+        // Apply fade-out
+        versionEl.style.opacity = '0';
+        statusEl.style.opacity = '0';
+        versionEl.style.transition = 'opacity 0.5s ease';
+        statusEl.style.transition = 'opacity 0.5s ease';
+
+        // Change text and fade-in after 500ms
+        setTimeout(() => {
+            versionEl.innerText = versions[currentIndex];
+            statusEl.innerText = statuses[currentIndex];
+            versionEl.style.opacity = '1';
+            statusEl.style.opacity = '1';
+        }, 500);
+    }
+
+    // Trigger every 10 seconds
+    setInterval(animateTerminal, 10000);
+
+
+    /** * 2. THEME TOGGLE LOGIC 
+     * Manages Light/Dark modes and remembers user preference
+     */
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-icon-dark');
+    const lightIcon = document.getElementById('theme-icon-light');
+
+    // Set initial icon state based on theme
+    function updateIcons() {
+        if (document.documentElement.classList.contains('dark')) {
+            darkIcon.classList.add('hidden');
+            lightIcon.classList.remove('hidden');
+        } else {
+            darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
+        }
+    }
+    
+    updateIcons(); // Run once on load
+
+    themeToggleBtn.addEventListener('click', () => {
+        // Toggle the 'dark' class on the <html> element
+        if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        }
+        updateIcons();
+    });
+</script>
+    
 </body>
 </html>
