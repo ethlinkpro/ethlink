@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ethlink | Building Omni USD</title>
     
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%236366f1%22/><text y=%22.9em%22 font-size=%2270%22 font-weight=%22800%22 x=%2220%22 fill=%22white%22 font-family=%22sans-serif%22>E</text></svg>">
+
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
@@ -34,14 +36,16 @@
         .tabular { font-variant-numeric: tabular-nums lining-nums; }
         .glass-panel { backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.7); }
         .dark .glass-panel { border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
+        #terminal-version, #terminal-status { transition: opacity 0.5s ease; }
     </style>
 </head>
+
 <body class="grid-blueprint bg-white text-slate-900 dark:bg-brand-dark dark:text-slate-100">
 
     <nav class="fixed top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-brand-dark/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-indigo-600 rounded flex items-center justify-center font-extrabold text-white text-sm">E</div>
+                <div class="w-8 h-8 bg-indigo-600 rounded flex items-center justify-center font-extrabold text-white text-sm shadow-lg shadow-indigo-600/20">E</div>
                 <span class="text-sm font-bold tracking-[0.3em] uppercase">Ethlink</span>
             </div>
             
@@ -50,7 +54,7 @@
                     <svg id="theme-icon-dark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     <svg id="theme-icon-light" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
                 </button>
-                <a href="mailto:support@ethlink.tech" class="bg-indigo-600 text-white px-7 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/20 active:scale-95">Request Access</a>
+                <a href="mailto:support@ethlink.tech?subject=OUSD%20Early%20Access%20Request%20%7C%20Ethlink%20Alpha&body=Hello%20Ethlink%20Team%2C%0A%0AI%20am%20interested%20in%20obtaining%20early%20access%20to%20the%20OUSD%20protocol%20and%20the%20Omni%20Vault%20simulator.%0A%0APlease%20add%20my%20email%20to%20the%20waitlist." class="bg-indigo-600 text-white px-7 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/20 active:scale-95">Request Access</a>
             </div>
         </div>
     </nav>
@@ -69,7 +73,7 @@
                     Building <b>OUSD</b>—the first multi-asset dollar collateralized by an autonomous basket of Gold, Liquid <b>USD</b>, and RWA Equities. 
                 </p>
                 <div class="flex flex-col sm:flex-row gap-5">
-                    <a href="mailto:support@ethlink.tech" class="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition">
+                    <a href="mailto:support@ethlink.tech?subject=OUSD%20Early%20Access%20Request%20%7C%20Ethlink%20Alpha&body=Hello%20Ethlink%20Team%2C%0A%0AI%20am%20interested%20in%20obtaining%20early%20access%20to%20the%20OUSD%20protocol." class="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition">
                         Join Waitlist
                     </a>
                     <button onclick="alert('The Omni Vault Simulation is currently in private staging. Stay tuned for our public release.')" class="glass-panel px-10 py-4 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] hover:bg-indigo-600/5 transition">
@@ -81,8 +85,8 @@
             <div class="glass-panel p-1 rounded-[2.5rem] relative group">
                 <div class="bg-white/40 dark:bg-[#0b0e14] p-10 rounded-[2.3rem] shadow-2xl">
                     <div class="flex justify-between items-center mb-10 text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">
-                        <span>Vault_Core::v1.0.4</span>
-                        <span class="text-indigo-600">Status::Compiling</span>
+                        <span id="terminal-version">Vault_Core::v1.0.4</span>
+                        <span id="terminal-status" class="text-indigo-600">Status::Compiling</span>
                     </div>
                     <div class="bg-slate-50 dark:bg-black/40 rounded-2xl p-8 font-mono text-[13px] text-slate-500 dark:text-gray-400 leading-relaxed border border-slate-200 dark:border-white/5 shadow-inner">
                         <p class="text-indigo-600 font-bold mb-4">// INIT_RESERVE_40_30_30</p>
@@ -124,94 +128,57 @@
         </div>
     </section>
 
-    <footer class="max-w-7xl mx-auto px-8 py-20 border-t border-slate-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-12">
+    <footer class="max-w-7xl mx-auto px-8 py-20 border-t border-slate-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
         <div class="flex items-center gap-3 opacity-60">
             <div class="w-6 h-6 bg-slate-900 dark:bg-white rounded flex items-center justify-center font-black text-[10px] text-white dark:text-black">E</div>
             <span class="text-[10px] font-bold uppercase tracking-[0.4em]">Ethlink Tech Labs</span>
         </div>
-        <a href="mailto:support@ethlink.tech" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all">support@ethlink.tech</a>
+        
+        <a href="mailto:support@ethlink.tech?subject=OUSD%20General%20Inquiry" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all">support@ethlink.tech</a>
         
         <div class="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30 tabular">
             &copy; ETHLINK_TECH_LABS
         </div>
     </footer>
 
-  <script>
-    /** * 1. TERMINAL ANIMATION LOGIC 
-     * Cycles text every 10 seconds with a professional fade effect
-     */
-    const versions = [
-        "Vault_Core::v1.0.4",
-        "Security::Patch_0.9",
-        "Oracle::Logic_v3.1",
-        "Module::RWA_Staging"
-    ];
-    
-    const statuses = [
-        "Status::Compiling",
-        "Status::Verifying_RWA",
-        "Status::Calibrating_NAV",
-        "Status::Syncing_Gold"
-    ];
+    <script>
+        /** 1. TERMINAL ANIMATION LOGIC */
+        const versions = ["Vault_Core::v1.0.4", "Security::Patch_0.9", "Oracle::Logic_v3.1", "Module::RWA_Staging"];
+        const statuses = ["Status::Compiling", "Status::Verifying_RWA", "Status::Calibrating_NAV", "Status::Syncing_Gold"];
+        let currentIndex = 0;
+        const versionEl = document.getElementById('terminal-version');
+        const statusEl = document.getElementById('terminal-status');
 
-    let currentIndex = 0;
-    const versionEl = document.getElementById('terminal-version');
-    const statusEl = document.getElementById('terminal-status');
-
-    function animateTerminal() {
-        currentIndex = (currentIndex + 1) % versions.length;
-        
-        // Apply fade-out
-        versionEl.style.opacity = '0';
-        statusEl.style.opacity = '0';
-        versionEl.style.transition = 'opacity 0.5s ease';
-        statusEl.style.transition = 'opacity 0.5s ease';
-
-        // Change text and fade-in after 500ms
-        setTimeout(() => {
-            versionEl.innerText = versions[currentIndex];
-            statusEl.innerText = statuses[currentIndex];
-            versionEl.style.opacity = '1';
-            statusEl.style.opacity = '1';
-        }, 500);
-    }
-
-    // Trigger every 10 seconds
-    setInterval(animateTerminal, 10000);
-
-
-    /** * 2. THEME TOGGLE LOGIC 
-     * Manages Light/Dark modes and remembers user preference
-     */
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const darkIcon = document.getElementById('theme-icon-dark');
-    const lightIcon = document.getElementById('theme-icon-light');
-
-    // Set initial icon state based on theme
-    function updateIcons() {
-        if (document.documentElement.classList.contains('dark')) {
-            darkIcon.classList.add('hidden');
-            lightIcon.classList.remove('hidden');
-        } else {
-            darkIcon.classList.remove('hidden');
-            lightIcon.classList.add('hidden');
+        function animateTerminal() {
+            if(!versionEl || !statusEl) return;
+            versionEl.style.opacity = '0';
+            statusEl.style.opacity = '0';
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % versions.length;
+                versionEl.innerText = versions[currentIndex];
+                statusEl.innerText = statuses[currentIndex];
+                versionEl.style.opacity = '1';
+                statusEl.style.opacity = '1';
+            }, 500);
         }
-    }
-    
-    updateIcons(); // Run once on load
+        setInterval(animateTerminal, 10000);
 
-    themeToggleBtn.addEventListener('click', () => {
-        // Toggle the 'dark' class on the <html> element
-        if (document.documentElement.classList.contains('dark')) {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
+        /** 2. THEME TOGGLE LOGIC */
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-icon-dark');
+        const lightIcon = document.getElementById('theme-icon-light');
+
+        function updateIcons() {
+            const isDark = document.documentElement.classList.contains('dark');
+            darkIcon?.classList.toggle('hidden', isDark);
+            lightIcon?.classList.toggle('hidden', !isDark);
         }
         updateIcons();
-    });
-</script>
-    
+        themeToggleBtn?.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateIcons();
+        });
+    </script>
 </body>
 </html>
