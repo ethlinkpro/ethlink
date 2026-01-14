@@ -36,7 +36,15 @@
         .tabular { font-variant-numeric: tabular-nums lining-nums; }
         .glass-panel { backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.7); }
         .dark .glass-panel { border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
-        #terminal-version, #terminal-status { transition: opacity 0.5s ease; }
+        
+        /* Motion Graphic Styles */
+        #terminal-version, #terminal-status, #logic-lines, #validation-msg { transition: all 0.5s ease; }
+        .flicker { animation: flicker 0.15s ease-in-out; }
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; transform: translateX(2px); }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
 
@@ -54,7 +62,7 @@
                     <svg id="theme-icon-dark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     <svg id="theme-icon-light" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
                 </button>
-                <a href="mailto:support@ethlink.tech?subject=OUSD%20Early%20Access%20Request%20%7C%20Ethlink%20Alpha&body=Hello%20Ethlink%20Team%2C%0A%0AI%20am%20interested%20in%20obtaining%20early%20access%20to%20the%20OUSD%20protocol%20and%20the%20Omni%20Vault%20simulator.%0A%0APlease%20add%20my%20email%20to%20the%20waitlist." class="bg-indigo-600 text-white px-7 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/20 active:scale-95">Request Access</a>
+                <a href="mailto:support@ethlink.tech?subject=OUSD%20Early%20Access%20Request&body=Hello%20Ethlink%20Team%2C%20I%20am%20interested%20in%20OUSD." class="bg-indigo-600 text-white px-7 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/20 active:scale-95">Request Access</a>
             </div>
         </div>
     </nav>
@@ -73,10 +81,10 @@
                     Building <b>OUSD</b>—the first multi-asset dollar collateralized by an autonomous basket of Gold, Liquid <b>USD</b>, and RWA Equities. 
                 </p>
                 <div class="flex flex-col sm:flex-row gap-5">
-                    <a href="mailto:support@ethlink.tech?subject=OUSD%20Early%20Access%20Request%20%7C%20Ethlink%20Alpha&body=Hello%20Ethlink%20Team%2C%0A%0AI%20am%20interested%20in%20obtaining%20early%20access%20to%20the%20OUSD%20protocol." class="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition">
+                    <a href="mailto:support@ethlink.tech?subject=OUSD%20Join%20Waitlist" class="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition">
                         Join Waitlist
                     </a>
-                    <button onclick="alert('The Omni Vault Simulation is currently in private staging. Stay tuned for our public release.')" class="glass-panel px-10 py-4 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] hover:bg-indigo-600/5 transition">
+                    <button onclick="alert('The Omni Vault Simulation is currently in private staging.')" class="glass-panel px-10 py-4 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] hover:bg-indigo-600/5 transition">
                         View Demo
                     </button>
                 </div>
@@ -88,13 +96,15 @@
                         <span id="terminal-version">Vault_Core::v1.0.4</span>
                         <span id="terminal-status" class="text-indigo-600">Status::Compiling</span>
                     </div>
-                    <div class="bg-slate-50 dark:bg-black/40 rounded-2xl p-8 font-mono text-[13px] text-slate-500 dark:text-gray-400 leading-relaxed border border-slate-200 dark:border-white/5 shadow-inner">
+                    <div class="bg-slate-50 dark:bg-black/40 rounded-2xl p-8 font-mono text-[13px] text-slate-500 dark:text-gray-400 leading-relaxed border border-slate-200 dark:border-white/5 shadow-inner relative overflow-hidden">
                         <p class="text-indigo-600 font-bold mb-4">// INIT_RESERVE_40_30_30</p>
-                        <p class="tabular text-indigo-500 font-bold">Gold_Reserve.ratio = 0.40;</p>
-                        <p class="tabular">Equity_RWA.ratio = 0.30;</p>
-                        <p class="tabular">Liquid_USD.ratio = 0.30;</p>
+                        <div id="logic-lines" class="space-y-1">
+                            <p class="tabular text-indigo-500 font-bold">Gold_Reserve.ratio = 0.40;</p>
+                            <p class="tabular">Equity_RWA.ratio = 0.30;</p>
+                            <p class="tabular">Liquid_USD.ratio = 0.30;</p>
+                        </div>
                         <div class="mt-6 pt-6 border-t border-slate-200 dark:border-white/5">
-                            <p class="text-green-500 font-bold tracking-widest">// VALIDATION_SUCCESS</p>
+                            <p id="validation-msg" class="text-green-500 font-bold tracking-widest uppercase">// VALIDATION_SUCCESS</p>
                         </div>
                     </div>
                 </div>
@@ -107,74 +117,74 @@
             <div class="glass-panel p-12 rounded-[2.5rem] group">
                 <div class="w-12 h-12 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition">🏆</div>
                 <h3 class="text-sm font-extrabold mb-4 uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">Gold Hardened</h3>
-                <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">
-                    A 40% physical gold reserve provides a sovereign-grade hedge, ensuring OUSD preserves purchasing power against fiat inflation.
-                </p>
+                <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">A 40% physical gold reserve provides a sovereign-grade hedge against inflation.</p>
             </div>
             <div class="glass-panel p-12 rounded-[2.5rem] group">
                 <div class="w-12 h-12 bg-indigo-600/10 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition">📈</div>
                 <h3 class="text-sm font-extrabold mb-4 uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">Equity Backed</h3>
-                <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">
-                    Mint <b>OUSD</b> against whitelisted blue-chip equities. Our protocol unlocks capital from global industry leaders.
-                </p>
+                <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">Mint OUSD against whitelisted blue-chip equities from global industry leaders.</p>
             </div>
             <div class="glass-panel p-12 rounded-[2.5rem] group">
                 <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition">⚙️</div>
                 <h3 class="text-sm font-extrabold mb-4 uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">Liquid Reserves</h3>
-                <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">
-                    Deep <b>USD</b> liquidity pools provide instant interoperability, ensuring T+0 redemption and market stability.
-                </p>
+                <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">Deep USD liquidity pools provide instant interoperability and T+0 redemption.</p>
             </div>
         </div>
     </section>
 
-    <footer class="max-w-7xl mx-auto px-8 py-20 border-t border-slate-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
+    <footer class="max-w-7xl mx-auto px-8 py-20 border-t border-slate-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-12">
         <div class="flex items-center gap-3 opacity-60">
             <div class="w-6 h-6 bg-slate-900 dark:bg-white rounded flex items-center justify-center font-black text-[10px] text-white dark:text-black">E</div>
             <span class="text-[10px] font-bold uppercase tracking-[0.4em]">Ethlink Tech Labs</span>
         </div>
-        
-        <a href="mailto:support@ethlink.tech?subject=OUSD%20General%20Inquiry" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all">support@ethlink.tech</a>
-        
-        <div class="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30 tabular">
-            &copy; ETHLINK_TECH_LABS
-        </div>
+        <a href="mailto:support@ethlink.tech" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all">support@ethlink.tech</a>
+        <div class="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30 tabular">&copy; ETHLINK_TECH_LABS</div>
     </footer>
 
     <script>
-        /** 1. TERMINAL ANIMATION LOGIC */
         const versions = ["Vault_Core::v1.0.4", "Security::Patch_0.9", "Oracle::Logic_v3.1", "Module::RWA_Staging"];
         const statuses = ["Status::Compiling", "Status::Verifying_RWA", "Status::Calibrating_NAV", "Status::Syncing_Gold"];
         let currentIndex = 0;
-        const versionEl = document.getElementById('terminal-version');
-        const statusEl = document.getElementById('terminal-status');
+        
+        const vEl = document.getElementById('terminal-version');
+        const sEl = document.getElementById('terminal-status');
+        const logicEl = document.getElementById('logic-lines');
+        const valEl = document.getElementById('validation-msg');
 
         function animateTerminal() {
-            if(!versionEl || !statusEl) return;
-            versionEl.style.opacity = '0';
-            statusEl.style.opacity = '0';
+            // Update Top Items
+            vEl.style.opacity = '0';
+            sEl.style.opacity = '0';
+            
+            // Re-ping Logic Items with Flicker
+            logicEl.classList.remove('flicker');
+            valEl.classList.remove('flicker');
+            void logicEl.offsetWidth; // Trigger Reflow
+            logicEl.classList.add('flicker');
+            valEl.classList.add('flicker');
+
             setTimeout(() => {
                 currentIndex = (currentIndex + 1) % versions.length;
-                versionEl.innerText = versions[currentIndex];
-                statusEl.innerText = statuses[currentIndex];
-                versionEl.style.opacity = '1';
-                statusEl.style.opacity = '1';
+                vEl.innerText = versions[currentIndex];
+                sEl.innerText = statuses[currentIndex];
+                vEl.style.opacity = '1';
+                sEl.style.opacity = '1';
             }, 500);
         }
+
         setInterval(animateTerminal, 10000);
 
-        /** 2. THEME TOGGLE LOGIC */
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-icon-dark');
-        const lightIcon = document.getElementById('theme-icon-light');
+        const themeBtn = document.getElementById('theme-toggle');
+        const darkI = document.getElementById('theme-icon-dark');
+        const lightI = document.getElementById('theme-icon-light');
 
         function updateIcons() {
             const isDark = document.documentElement.classList.contains('dark');
-            darkIcon?.classList.toggle('hidden', isDark);
-            lightIcon?.classList.toggle('hidden', !isDark);
+            darkI?.classList.toggle('hidden', isDark);
+            lightI?.classList.toggle('hidden', !isDark);
         }
         updateIcons();
-        themeToggleBtn?.addEventListener('click', () => {
+        themeBtn?.addEventListener('click', () => {
             const isDark = document.documentElement.classList.toggle('dark');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
             updateIcons();
