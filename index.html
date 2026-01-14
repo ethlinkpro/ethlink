@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethlink | Omni Vault Protocol</title>
+    <title>Ethlink | Building Omni USD</title>
     
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -22,7 +22,7 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
-                    colors: { brand: { indigo: '#6366f1', darkness: '#020305' } }
+                    colors: { brand: { indigo: '#6366f1', dark: '#020305' } }
                 }
             }
         }
@@ -34,12 +34,11 @@
         .tabular { font-variant-numeric: tabular-nums lining-nums; }
         .glass-panel { backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.7); }
         .dark .glass-panel { border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
-        .roadmap-line { border-left: 1px solid rgba(99, 102, 241, 0.2); }
     </style>
 </head>
-<body class="grid-blueprint bg-white text-slate-900 dark:bg-brand-darkness dark:text-slate-100">
+<body class="grid-blueprint bg-white text-slate-900 dark:bg-brand-dark dark:text-slate-100">
 
-    <nav class="fixed top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-brand-darkness/80 backdrop-blur-md">
+    <nav class="fixed top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-brand-dark/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-indigo-600 rounded flex items-center justify-center font-extrabold text-white text-sm">E</div>
@@ -61,13 +60,13 @@
             <div class="text-left">
                 <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-10">
                     <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
-                    Development Phase: Omni Vault Alpha
+                    Development: Omni USD V1 (Alpha)
                 </div>
                 <h1 class="text-6xl md:text-[5.5rem] font-extrabold tracking-tighter mb-10 leading-[0.9] text-slate-900 dark:text-white">
-                    Stabilizing <br><span class="text-indigo-600">Global Value.</span>
+                    Stabilizing <br><span class="text-indigo-600">Value.</span>
                 </h1>
                 <p class="text-slate-500 dark:text-gray-400 text-lg md:text-xl mb-12 max-w-lg leading-relaxed font-medium">
-                    Engineering <b>OUSD</b>—a multi-asset stablecoin collateralized by an autonomous basket of Gold, <b>USD/AED</b> liquidity, and Global Equities. 
+                    Building <b>OUSD</b>—the first multi-asset dollar collateralized by an autonomous basket of Gold, Liquid <b>USD</b>, and RWA Equities. 
                 </p>
                 <div class="flex flex-col sm:flex-row gap-5">
                     <a href="mailto:support@ethlink.tech" class="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition">
@@ -86,12 +85,12 @@
                         <span class="text-indigo-600">Status::Compiling</span>
                     </div>
                     <div class="bg-slate-50 dark:bg-black/40 rounded-2xl p-8 font-mono text-[13px] text-slate-500 dark:text-gray-400 leading-relaxed border border-slate-200 dark:border-white/5 shadow-inner">
-                        <p class="text-indigo-600 font-bold mb-4">// SETTING_RESERVE_WEIGHTS</p>
-                        <p class="tabular">Gold_Reserve.ratio = 0.30;</p>
+                        <p class="text-indigo-600 font-bold mb-4">// INIT_RESERVE_40_30_30</p>
+                        <p class="tabular text-indigo-500 font-bold">Gold_Reserve.ratio = 0.40;</p>
                         <p class="tabular">Equity_RWA.ratio = 0.30;</p>
-                        <p class="tabular text-indigo-500 font-bold">Liquid_USD_AED.ratio = 0.40;</p>
+                        <p class="tabular">Liquid_USD.ratio = 0.30;</p>
                         <div class="mt-6 pt-6 border-t border-slate-200 dark:border-white/5">
-                            <p class="text-green-500 font-bold tracking-widest">// VALIDATION_PASSED</p>
+                            <p class="text-green-500 font-bold tracking-widest">// VALIDATION_SUCCESS</p>
                         </div>
                     </div>
                 </div>
@@ -102,24 +101,24 @@
     <section class="max-w-7xl mx-auto px-8 pb-40">
         <div class="grid md:grid-cols-3 gap-8">
             <div class="glass-panel p-12 rounded-[2.5rem] group">
-                <div class="w-12 h-12 bg-indigo-600/10 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition">📈</div>
-                <h3 class="text-sm font-extrabold mb-4 uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">Equity Liquidity</h3>
-                <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">
-                    Unlock capital from whitelisted blue-chip equities. Mint <b>OUSD</b> against tokenized shares of global industry leaders.
-                </p>
-            </div>
-            <div class="glass-panel p-12 rounded-[2.5rem] group">
                 <div class="w-12 h-12 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition">🏆</div>
                 <h3 class="text-sm font-extrabold mb-4 uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">Gold Hardened</h3>
                 <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">
-                    A 30% physical gold reserve provides a sovereign-grade hedge, ensuring your stablecoin preserves purchasing power.
+                    A 40% physical gold reserve provides a sovereign-grade hedge, ensuring OUSD preserves purchasing power against fiat inflation.
+                </p>
+            </div>
+            <div class="glass-panel p-12 rounded-[2.5rem] group">
+                <div class="w-12 h-12 bg-indigo-600/10 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition">📈</div>
+                <h3 class="text-sm font-extrabold mb-4 uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">Equity Backed</h3>
+                <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">
+                    Mint <b>OUSD</b> against whitelisted blue-chip equities. Our protocol unlocks capital from global industry leaders.
                 </p>
             </div>
             <div class="glass-panel p-12 rounded-[2.5rem] group">
                 <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition">⚙️</div>
-                <h3 class="text-sm font-extrabold mb-4 uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">Dual-Peg Strategy</h3>
+                <h3 class="text-sm font-extrabold mb-4 uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200">Liquid Reserves</h3>
                 <p class="text-sm text-slate-500 dark:text-gray-400 leading-relaxed font-medium">
-                    Leveraging deep <b>USD and AED</b> liquidity pools to provide instant interoperability and 1:1 redemption at scale.
+                    Deep <b>USD</b> liquidity pools provide instant interoperability, ensuring T+0 redemption and market stability.
                 </p>
             </div>
         </div>
@@ -132,7 +131,7 @@
         </div>
         <a href="mailto:support@ethlink.tech" class="text-xs font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all">support@ethlink.tech</a>
         <div class="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30 tabular">
-            &copy; 2026_STABLE_V1
+            &copy; 2026_ALPHA_V1
         </div>
     </footer>
 
