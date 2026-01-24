@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethlink | OUSD - The Staked Stablecoin</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: { brand: { indigo: '#6366f1', emerald: '#10b981', dark: '#020305' } }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { transition: background-color 0.4s ease; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        .grid-blueprint { background-image: radial-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 1px); background-size: 32px 32px; }
+        .tabular { font-variant-numeric: tabular-nums lining-nums; }
+        .glass-panel { backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.7); }
+        .dark .glass-panel { border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
+        
+        .active-ousd { color: #10b981; border-bottom: 2px solid #10b981; }
+        .dark .active-ousd { color: #34d399; border-bottom: 2px solid #34d399; }
+
+        .flicker { animation: flicker 0.15s ease-in-out; }
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; transform: translateX(1px); }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+
+<body class="grid-blueprint bg-white text-slate-900 dark:bg-brand-dark dark:text-slate-100" data-page="ousd">
+
+    <nav class="fixed top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-brand-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-emerald-600 rounded flex items-center justify-center font-extrabold text-white text-sm shadow-lg shadow-emerald-600/20">E</div>
+                <span class="text-sm font-bold tracking-[0.3em] uppercase">Ethlink</span>
+            </div>
+            
+            <div id="main-nav" class="hidden md:flex items-center gap-10 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="index.html" class="py-1 hover:text-indigo-600 transition-all">EFIX Index</a>
+                <a href="ousd.html" class="py-1 active-ousd">OUSD Stable</a>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <button id="theme-toggle" class="p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition duration-300">
+                    <svg id="theme-icon-dark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-icon-light" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-48 pb-32 px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-24 items-center">
+            <div class="text-left">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-10">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    OUSD: Liquidity Protocol v1.0
+                </div>
+                <h1 class="text-6xl md:text-[5.5rem] font-extrabold tracking-tighter mb-10 leading-[0.9] text-slate-900 dark:text-white">
+                    Unlock <br><span class="text-emerald-600 italic">Liquidity.</span>
+                </h1>
+                <p class="text-slate-500 dark:text-gray-400 text-lg md:text-xl mb-12 max-w-lg leading-relaxed font-medium">
+                    <b>OUSD</b> is the stable unit of the Ethlink ecosystem. Stake your EFIX Index tokens to mint a 100% collateralized dollar-peg, enabling instant spending without selling your hedge.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <button onclick="alert('OUSD Minting is currently in private staging.')" class="bg-emerald-600 text-white px-10 py-4 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-emerald-600/30 hover:bg-emerald-700 transition">
+                        Mint OUSD
+                    </button>
+                    <button onclick="alert('The Staking Simulation is in closed beta.')" class="glass-panel px-10 py-4 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] hover:bg-emerald-600/5 transition">
+                        Try Staking
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-panel p-1 rounded-[2.5rem] relative group">
+                <div class="bg-white/40 dark:bg-[#0b0e14] p-10 rounded-[2.3rem] shadow-2xl">
+                    <div class="flex justify-between items-center mb-10 text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">
+                        <span>Vault_Protocol::OUSD</span>
+                        <span class="text-emerald-600 tabular flicker">Collateral_Ratio::125%</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-10">
+                        <div class="bg-slate-50 dark:bg-black/40 p-6 rounded-2xl border border-white/5">
+                            <p class="text-[9px] font-bold uppercase text-slate-500 mb-2">Staked EFIX</p>
+                            <p class="text-2xl font-black tabular italic">1,000.00</p>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-black/40 p-6 rounded-2xl border border-white/5">
+                            <p class="text-[9px] font-bold uppercase text-slate-500 mb-2">Mintable OUSD</p>
+                            <p class="text-2xl font-black tabular italic text-emerald-500">$800.00</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                            <span>Health Factor</span>
+                            <span class="text-emerald-500">Excellent</span>
+                        </div>
+                        <div class="h-1.5 bg-slate-100 dark:bg-white/5 rounded-full overflow-hidden">
+                            <div class="h-full bg-emerald-500 w-[80%] transition-all duration-1000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative bg-emerald-600/[0.02] border-y border-slate-200 dark:border-white/5 py-32 px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-[10px] font-bold text-emerald-500 uppercase tracking-[0.4em] mb-4">The Protocol Lifecycle</h2>
+                <h3 class="text-4xl font-black italic tracking-tight">Three Steps to Perpetual Liquidity.</h3>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                
+                <div class="glass-panel p-10 rounded-[2.5rem] group hover:border-emerald-500/30 transition-all duration-500">
+                    <div class="w-16 h-16 bg-emerald-600/10 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform">🔒</div>
+                    <h3 class="text-xl font-extrabold mb-6 uppercase tracking-wider italic text-slate-800 dark:text-slate-100">01. Stake</h3>
+                    <p class="text-lg text-slate-500 dark:text-gray-400 leading-relaxed font-semibold">
+                        Deposit your <span class="text-slate-900 dark:text-white">EFIX Index</span> tokens into the audited Omni-Vault. Your assets continue to benefit from <span class="text-emerald-500">ELARA rebalancing</span> even while locked.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-10 rounded-[2.5rem] group hover:border-emerald-500/30 transition-all duration-500 border-emerald-500/20">
+                    <div class="w-16 h-16 bg-emerald-600/10 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform">⚡</div>
+                    <h3 class="text-xl font-extrabold mb-6 uppercase tracking-wider italic text-emerald-600">02. Mint</h3>
+                    <p class="text-lg text-slate-500 dark:text-gray-400 leading-relaxed font-semibold">
+                        Generate <span class="text-slate-900 dark:text-white">OUSD</span> against your position. A conservative <span class="text-emerald-500 font-black tabular italic">125% collateral ratio</span> ensures absolute system solvency and peg stability.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-10 rounded-[2.5rem] group hover:border-emerald-500/30 transition-all duration-500">
+                    <div class="w-16 h-16 bg-emerald-600/10 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform">🛒</div>
+                    <h3 class="text-xl font-extrabold mb-6 uppercase tracking-wider italic text-slate-800 dark:text-slate-100">03. Spend</h3>
+                    <p class="text-lg text-slate-500 dark:text-gray-400 leading-relaxed font-semibold">
+                        Use OUSD across the <span class="text-slate-900 dark:text-white">DeFi ecosystem</span>. Your wealth grows via the EFIX index; your lifestyle is powered by <span class="text-emerald-500">OUSD liquidity</span>.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="max-w-7xl mx-auto px-8 py-20 flex flex-col md:flex-row justify-between items-center gap-12">
+        <div class="flex items-center gap-3 opacity-60">
+            <div class="w-6 h-6 bg-slate-900 dark:bg-white rounded flex items-center justify-center font-black text-[10px] text-white dark:text-black">E</div>
+            <span class="text-[10px] font-bold uppercase tracking-[0.4em]">Ethlink Tech Labs</span>
+        </div>
+        <a href="mailto:support@ethlink.tech" class="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline underline-offset-8 transition-all tracking-widest">support@ethlink.tech</a>
+        <div class="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30 tabular">&copy; ETHLINK_TECH_LABS_2026</div>
+    </footer>
+
+    <script>
+        // THEME TOGGLE
+        const themeBtn = document.getElementById('theme-toggle');
+        const darkI = document.getElementById('theme-icon-dark');
+        const lightI = document.getElementById('theme-icon-light');
+
+        function updateIcons() {
+            const isDark = document.documentElement.classList.contains('dark');
+            darkI?.classList.toggle('hidden', isDark);
+            lightI?.classList.toggle('hidden', !isDark);
+        }
+        updateIcons();
+        themeBtn?.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateIcons();
+        });
+    </script>
+</body>
+</html>
