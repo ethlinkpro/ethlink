@@ -53,6 +53,7 @@
 
     <nav class="fixed top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-brand-dark/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex justify-between items-center">
+            
             <div class="flex items-center gap-2 md:gap-3">
                 <div class="w-6 h-6 md:w-8 md:h-8 bg-indigo-600 rounded flex items-center justify-center font-extrabold text-white text-[10px] md:text-sm shadow-lg shadow-indigo-600/20">E</div>
                 <span class="text-[10px] md:text-sm font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase">Ethlink</span>
@@ -63,12 +64,11 @@
                 <a href="ousd.html" class="py-1 hover:text-indigo-600 transition-all">OUSD Stable</a>
             </div>
 
-            <div class="flex items-center gap-3 md:gap-6">
-                <button id="theme-toggle" class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition duration-300">
+            <div class="flex items-center">
+                <button id="theme-toggle" class="p-2 md:p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition duration-300">
                     <svg id="theme-icon-dark" class="hidden w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     <svg id="theme-icon-light" class="hidden w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
                 </button>
-                <a href="mailto:support@ethlink.tech?subject=EFIX%20Investment%20Inquiry" class="bg-indigo-600 text-white px-4 md:px-7 py-2 md:py-3 rounded-full text-[8px] md:text-[10px] font-bold uppercase tracking-[0.1em] md:tracking-[0.15em] hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/20 active:scale-95">Enter Fund</a>
             </div>
         </div>
     </nav>
@@ -168,7 +168,7 @@
     </footer>
 
     <script>
-        // THEME TOGGLE
+        // (Include identical scripts for Theme and AI logic as before)
         const themeBtn = document.getElementById('theme-toggle');
         const darkI = document.getElementById('theme-icon-dark');
         const lightI = document.getElementById('theme-icon-light');
@@ -185,7 +185,6 @@
             updateIcons();
         });
 
-        // VARIABLE SPEED AI LOGIC
         const logicLogs = [
             ["// Signal: Inverse_Correlation_Triggered", "// Action: Reallocating_Equity_to_Gold", "// Status: Hedged"],
             ["// Alert: Volatility_Spike_Detected", "// Action: Increasing_Stable_Liquidity", "// Status: Safe"],
@@ -200,14 +199,11 @@
             const bars = document.querySelectorAll('.basket-bar');
             const statusEl = document.getElementById('terminal-status');
             const logicEl = document.getElementById('logic-lines');
-            
             const isFlash = Math.random() > 0.8;
-            
             bars.forEach(bar => {
                 if (isFlash) bar.classList.add('flash');
                 else bar.classList.remove('flash');
             });
-
             let g, e;
             if (isFlash) {
                 g = Math.floor(45 + Math.random() * 10);
@@ -217,25 +213,19 @@
                 e = Math.floor(29 + Math.random() * 3);
             }
             const s = 100 - (g + e);
-
             document.getElementById('gold-bar').style.width = g + '%';
             document.getElementById('equity-bar').style.width = e + '%';
             document.getElementById('usd-bar').style.width = s + '%';
-            
             document.getElementById('gold-val').innerText = g + '%';
             document.getElementById('equity-val').innerText = e + '%';
             document.getElementById('usd-val').innerText = s + '%';
-
             const activeIndex = isFlash ? 4 : (count % 4);
             statusEl.innerText = statusText[activeIndex];
             logicEl.innerHTML = logicLogs[activeIndex].map(l => `<p>${l}</p>`).join('');
-            
             if (!isFlash) count++;
-            
             const nextTimeout = isFlash ? 1500 : 4000;
             setTimeout(updateAI, nextTimeout);
         }
-        
         setTimeout(updateAI, 1000);
     </script>
 </body>
