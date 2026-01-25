@@ -37,7 +37,6 @@
         .dark .glass-panel { border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
         .gradient-text { background: linear-gradient(to right, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* Dynamic Transition Classes */
         .basket-bar { transition: width 2000ms ease-in-out; }
         .basket-bar.flash { transition: width 400ms cubic-bezier(0.22, 1, 0.36, 1); }
 
@@ -53,23 +52,23 @@
 <body class="grid-blueprint bg-white text-slate-900 dark:bg-brand-dark dark:text-slate-100">
 
     <nav class="fixed top-0 w-full z-50 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-brand-dark/80 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-indigo-600 rounded flex items-center justify-center font-extrabold text-white text-sm shadow-lg shadow-indigo-600/20">E</div>
-                <span class="text-sm font-bold tracking-[0.3em] uppercase">Ethlink</span>
+        <div class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-2 md:gap-3">
+                <div class="w-6 h-6 md:w-8 md:h-8 bg-indigo-600 rounded flex items-center justify-center font-extrabold text-white text-[10px] md:text-sm shadow-lg shadow-indigo-600/20">E</div>
+                <span class="text-[10px] md:text-sm font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase">Ethlink</span>
             </div>
             
-            <div id="main-nav" class="hidden md:flex items-center gap-10 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="#efix" class="py-1 text-indigo-600 border-b-2 border-indigo-600">EFIX Index</a>
+            <div id="main-nav" class="flex items-center gap-4 md:gap-10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="index.html" class="py-1 text-indigo-600 border-b-2 border-indigo-600">EFIX Index</a>
                 <a href="ousd.html" class="py-1 hover:text-indigo-600 transition-all">OUSD Stable</a>
             </div>
 
-            <div class="flex items-center gap-6">
-                <button id="theme-toggle" class="p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition duration-300">
-                    <svg id="theme-icon-dark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                    <svg id="theme-icon-light" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+            <div class="flex items-center gap-3 md:gap-6">
+                <button id="theme-toggle" class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition duration-300">
+                    <svg id="theme-icon-dark" class="hidden w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-icon-light" class="hidden w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
                 </button>
-                <a href="mailto:support@ethlink.tech?subject=EFIX%20Investment%20Inquiry" class="bg-indigo-600 text-white px-7 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/20 active:scale-95">Enter Fund</a>
+                <a href="mailto:support@ethlink.tech?subject=EFIX%20Investment%20Inquiry" class="bg-indigo-600 text-white px-4 md:px-7 py-2 md:py-3 rounded-full text-[8px] md:text-[10px] font-bold uppercase tracking-[0.1em] md:tracking-[0.15em] hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/20 active:scale-95">Enter Fund</a>
             </div>
         </div>
     </nav>
@@ -202,29 +201,23 @@
             const statusEl = document.getElementById('terminal-status');
             const logicEl = document.getElementById('logic-lines');
             
-            // Randomly decide if this is a "Flash" event (20% chance)
             const isFlash = Math.random() > 0.8;
             
-            // Set transition speed
             bars.forEach(bar => {
                 if (isFlash) bar.classList.add('flash');
                 else bar.classList.remove('flash');
             });
 
-            // Calculate new positions
             let g, e;
             if (isFlash) {
-                // Flash events cause larger swings
                 g = Math.floor(45 + Math.random() * 10);
                 e = Math.floor(15 + Math.random() * 5);
             } else {
-                // Normal events are subtle
                 g = Math.floor(39 + Math.random() * 3);
                 e = Math.floor(29 + Math.random() * 3);
             }
             const s = 100 - (g + e);
 
-            // Apply updates
             document.getElementById('gold-bar').style.width = g + '%';
             document.getElementById('equity-bar').style.width = e + '%';
             document.getElementById('usd-bar').style.width = s + '%';
@@ -233,19 +226,16 @@
             document.getElementById('equity-val').innerText = e + '%';
             document.getElementById('usd-val').innerText = s + '%';
 
-            // Update Terminal
             const activeIndex = isFlash ? 4 : (count % 4);
             statusEl.innerText = statusText[activeIndex];
             logicEl.innerHTML = logicLogs[activeIndex].map(l => `<p>${l}</p>`).join('');
             
             if (!isFlash) count++;
             
-            // Re-run with variable timing
             const nextTimeout = isFlash ? 1500 : 4000;
             setTimeout(updateAI, nextTimeout);
         }
         
-        // Initialize
         setTimeout(updateAI, 1000);
     </script>
 </body>
