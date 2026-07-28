@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethlink | EFIX Index & ELARA Intelligence Engine</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: { brand: { indigo: '#6366f1', dark: '#020305' } }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { transition: background-color 0.4s ease; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        .grid-blueprint { background-image: radial-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px); background-size: 32px 32px; }
+        .tabular { font-variant-numeric: tabular-nums lining-nums; }
+        .glass-panel { backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.7); }
+        .dark .glass-panel { border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); }
+        .gradient-text { background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .basket-bar { transition: width 2000ms ease-in-out; }
+        .basket-bar.flash { transition: width 400ms cubic-bezier(0.22, 1, 0.36, 1); }
+
+        .flicker { animation: flicker 0.15s ease-in-out; }
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; transform: translateX(2px); }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+
+<body class="grid-blueprint bg-white text-slate-900 dark:bg-brand-dark dark:text-slate-100 min-h-screen flex flex-col justify-between">
+
+    <!-- FLOATING STYLISH NAVIGATION BAR (NO TRADITIONAL NAVBAR) -->
+    <header class="fixed top-6 left-0 right-0 z-50 max-w-7xl mx-auto px-6 flex justify-between items-center pointer-events-none">
+        
+        <!-- BACK TO HOME CONTROL -->
+        <a href="index.html" class="pointer-events-auto inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel text-xs font-extrabold uppercase tracking-widest text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 border border-slate-200 dark:border-white/10 shadow-xl shadow-black/5 group transition-all duration-300 hover:scale-105">
+            <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <span>Back to Ethlink</span>
+        </a>
+
+        <!-- THEME TOGGLE -->
+        <button id="theme-toggle" class="pointer-events-auto p-3 rounded-2xl glass-panel border border-slate-200 dark:border-white/10 shadow-xl shadow-black/5 hover:bg-slate-100 dark:hover:bg-white/5 transition duration-300">
+            <svg id="theme-icon-dark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-icon-light" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+        </button>
+    </header>
+
+    <!-- EFIX HERO SECTION -->
+    <section id="efix" class="relative pt-36 pb-20 px-8 max-w-7xl mx-auto w-full">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-8 border border-indigo-500/20">
+                    <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+                    EFIX: Alpha Under Construction
+                </div>
+                <h1 class="text-6xl md:text-[5.5rem] font-black tracking-tighter mb-8 leading-[0.9 text-slate-900 dark:text-white">
+                    The Index of <br><span class="gradient-text">Alpha.</span>
+                </h1>
+                <p class="text-slate-500 dark:text-gray-400 text-lg md:text-xl mb-10 max-w-lg leading-relaxed font-medium">
+                    <b>EFIX</b> is the first multi-asset hedge basket powered by autonomous intelligence. One token to access a self-balancing mix of <b>Gold</b>, <b>RWA Stocks</b>, and <b>Crypto</b>.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="alert('EFIX is currently in Private Sale phase.')" class="bg-indigo-600 text-white px-10 py-4.5 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition">
+                        Acquire EFIX
+                    </button>
+                    <button onclick="alert('The EFIX staging environment is currently in private testing.')" class="glass-panel px-10 py-4.5 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] hover:bg-indigo-600/5 transition">
+                        Try Product
+                    </button>
+                </div>
+            </div>
+
+            <!-- LIVE BASKET DEMO -->
+            <div class="glass-panel p-1 rounded-[2.5rem] relative group border border-slate-200 dark:border-white/10 shadow-2xl">
+                <div class="bg-white/40 dark:bg-[#0b0e14] p-8 md:p-10 rounded-[2.3rem]">
+                    <h3 class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-8 italic">Live Basket Re-Allocation</h3>
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between items-center mb-2 text-[10px] font-bold uppercase tracking-widest"><span class="text-yellow-500">Gold (XAUt / PAXG)</span><span id="gold-val" class="tabular font-mono">40%</span></div>
+                            <div class="h-2 bg-slate-100 dark:bg-white/5 rounded-full overflow-hidden"><div id="gold-bar" class="basket-bar h-full bg-yellow-500 w-[40%]"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2 text-[10px] font-bold uppercase tracking-widest"><span class="text-indigo-500">Equity (ONDO / Blue-Chip)</span><span id="equity-val" class="tabular font-mono">30%</span></div>
+                            <div class="h-2 bg-slate-100 dark:bg-white/5 rounded-full overflow-hidden"><div id="equity-bar" class="basket-bar h-full bg-indigo-500 w-[30%]"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2 text-[10px] font-bold uppercase tracking-widest"><span class="text-emerald-500">Stable (USDC / USDT)</span><span id="usd-val" class="tabular font-mono">30%</span></div>
+                            <div class="h-2 bg-slate-100 dark:bg-white/5 rounded-full overflow-hidden"><div id="usd-bar" class="basket-bar h-full bg-emerald-500 w-[30%]"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ELARA INTELLIGENCE SECTION -->
+    <section class="relative bg-indigo-600/[0.02] border-y border-slate-200 dark:border-white/5 py-24 px-8 my-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-[10px] font-extrabold text-indigo-500 uppercase tracking-[0.4em] mb-4">Autonomous Intelligence Layer</h2>
+                <h3 class="text-4xl md:text-5xl font-black italic tracking-tight">The ELARA Engine.</h3>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="glass-panel p-1 rounded-[2.5rem] shadow-2xl">
+                    <div class="bg-white/40 dark:bg-[#0b0e14] p-8 md:p-10 rounded-[2.3rem] font-mono text-[13px] leading-relaxed min-h-[180px]">
+                        <div class="flex justify-between items-center mb-6 border-b border-slate-200 dark:border-white/5 pb-4">
+                            <span class="text-indigo-500 font-bold tracking-widest uppercase">ELARA_Logic::v4.2.1</span>
+                            <span id="terminal-status" class="text-slate-500 italic flicker">Analysing_Market...</span>
+                        </div>
+                        <div id="logic-lines" class="space-y-3 text-slate-500 dark:text-gray-400">
+                            <p>// Signal: Inverse_Correlation_Triggered</p>
+                            <p class="text-emerald-500">// Action: Reallocating_Equity_to_Gold</p>
+                            <p>// Objective: Loss_Absorption_Engine_Active</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="group">
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">
+                            <span class="w-8 h-[2px] bg-indigo-600"></span> Absorb & Hedge
+                        </h4>
+                        <p class="text-slate-500 dark:text-gray-400 leading-relaxed font-medium text-base">ELARA is engineered to pair-trade inverse correlations. When Equity RWAs draw down, the engine capitalizes on Gold's safe-haven volatility to protect the Index NAV.</p>
+                    </div>
+                    <div class="group">
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">
+                            <span class="w-8 h-[2px] bg-indigo-600"></span> Profit Re-Allocation
+                        </h4>
+                        <p class="text-slate-500 dark:text-gray-400 leading-relaxed font-medium text-base">Unlike static portfolios, ELARA triggers real-time swaps to harvest profits from high-performance cycles, compounding the EFIX fund value autonomously.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="max-w-7xl mx-auto px-8 py-12 w-full flex flex-col md:flex-row justify-between items-center gap-6 border-t border-slate-200 dark:border-white/5">
+        <div class="flex items-center gap-3 opacity-60">
+            <div class="w-6 h-6 bg-indigo-600 rounded flex items-center justify-center font-black text-[10px] text-white">E</div>
+            <span class="text-[10px] font-bold uppercase tracking-[0.4em]">Ethlink Tech Labs</span>
+        </div>
+        <a href="mailto:support@ethlink.tech" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all tracking-widest">support@ethlink.tech</a>
+        <div class="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30 tabular">&copy; ETHLINK_TECH_LABS_2026</div>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        const darkI = document.getElementById('theme-icon-dark');
+        const lightI = document.getElementById('theme-icon-light');
+
+        function updateIcons() {
+            const isDark = document.documentElement.classList.contains('dark');
+            darkI?.classList.toggle('hidden', isDark);
+            lightI?.classList.toggle('hidden', !isDark);
+        }
+        updateIcons();
+        themeBtn?.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateIcons();
+        });
+
+        const logicLogs = [
+            ["// Signal: Inverse_Correlation_Triggered", "// Action: Reallocating_Equity_to_Gold", "// Status: Hedged"],
+            ["// Alert: Volatility_Spike_Detected", "// Action: Increasing_Stable_Liquidity", "// Status: Safe"],
+            ["// Yield: Profit_Target_Achieved", "// Action: Compounding_Fund_Value", "// Status: Optimised"],
+            ["// Analysis: Macro_Data_Positive", "// Action: Increasing_RWA_Exposure", "// Status: Growth"],
+            ["// CRITICAL: FLASH_SWAP_REQUIRED", "// Action: DUMPING_VOLATILE_ASSETS", "// Status: SHIELD_ACTIVE"]
+        ];
+        const statusText = ["Analysing_Risk...", "Executing_Swap...", "Optimizing_NAV...", "Syncing_Feeds...", "EMERGENCY_REBALANCE"];
+        let count = 0;
+
+        function updateAI() {
+            const bars = document.querySelectorAll('.basket-bar');
+            const statusEl = document.getElementById('terminal-status');
+            const logicEl = document.getElementById('logic-lines');
+            const isFlash = Math.random() > 0.8;
+            bars.forEach(bar => {
+                if (isFlash) bar.classList.add('flash');
+                else bar.classList.remove('flash');
+            });
+            let g, e;
+            if (isFlash) {
+                g = Math.floor(45 + Math.random() * 10);
+                e = Math.floor(15 + Math.random() * 5);
+            } else {
+                g = Math.floor(39 + Math.random() * 3);
+                e = Math.floor(29 + Math.random() * 3);
+            }
+            const s = 100 - (g + e);
+            document.getElementById('gold-bar').style.width = g + '%';
+            document.getElementById('equity-bar').style.width = e + '%';
+            document.getElementById('usd-bar').style.width = s + '%';
+            document.getElementById('gold-val').innerText = g + '%';
+            document.getElementById('equity-val').innerText = e + '%';
+            document.getElementById('usd-val').innerText = s + '%';
+            const activeIndex = isFlash ? 4 : (count % 4);
+            statusEl.innerText = statusText[activeIndex];
+            logicEl.innerHTML = logicLogs[activeIndex].map(l => `<p>${l}</p>`).join('');
+            if (!isFlash) count++;
+            const nextTimeout = isFlash ? 1500 : 4000;
+            setTimeout(updateAI, nextTimeout);
+        }
+        setTimeout(updateAI, 1000);
+    </script>
+</body>
+</html>
