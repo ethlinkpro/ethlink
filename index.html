@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ethlink | AI & Blockchain Enterprise Solutions</title>
-    
+
     <link rel="icon" type="image/png" href="logo.png">
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -15,8 +16,9 @@
     </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -30,51 +32,98 @@
     </script>
 
     <style>
-        body { transition: background-color 0.4s ease; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
-        .grid-blueprint { background-image: radial-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px); background-size: 32px 32px; }
-        .glass-panel { backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.7); }
-        .dark .glass-panel { border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); }
-        .gradient-text { background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .card-glow { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .card-glow:hover { transform: translateY(-6px); border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.2); }
+        body {
+            transition: background-color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        .grid-blueprint {
+            background-image: radial-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .dark .glass-panel {
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-glow {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-glow:hover {
+            transform: translateY(-6px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.2);
+        }
     </style>
 </head>
 
-<body class="grid-blueprint bg-white text-slate-900 dark:bg-brand-dark dark:text-slate-100 min-h-screen flex flex-col justify-between">
+<body
+    class="grid-blueprint bg-white text-slate-900 dark:bg-brand-dark dark:text-slate-100 min-h-screen flex flex-col justify-between">
 
     <!-- MINIMAL HEADER (NO NAV LINKS) -->
     <header class="w-full max-w-7xl mx-auto px-6 md:px-8 py-8 flex justify-between items-center">
         <a href="index.html" class="flex items-center gap-3 group">
-            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-extrabold text-white text-base shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform duration-300">E</div>
+            <div
+                class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-extrabold text-white text-base shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform duration-300">
+                E</div>
             <div class="flex flex-col">
                 <span class="text-sm font-extrabold tracking-[0.25em] uppercase">Ethlink</span>
                 <span class="text-[9px] font-bold text-indigo-500 tracking-widest uppercase">Tech Labs</span>
             </div>
         </a>
-        
+
         <div class="flex items-center gap-4">
-            <button id="theme-toggle" class="p-3 rounded-2xl glass-panel hover:bg-slate-100 dark:hover:bg-white/5 transition duration-300">
-                <svg id="theme-icon-dark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                <svg id="theme-icon-light" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+            <button id="theme-toggle"
+                class="p-3 rounded-2xl glass-panel hover:bg-slate-100 dark:hover:bg-white/5 transition duration-300">
+                <svg id="theme-icon-dark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
+                <svg id="theme-icon-light" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z">
+                    </path>
+                </svg>
             </button>
-            <a href="mailto:support@ethlink.tech" class="bg-indigo-600 text-white px-6 py-3 rounded-2xl text-[10px] font-extrabold uppercase tracking-widest shadow-lg shadow-indigo-600/30 hover:bg-indigo-700 hover:shadow-indigo-600/50 transition">Contact Us</a>
+            <a href="mailto:support@ethlink.tech"
+                class="bg-indigo-600 text-white px-6 py-3 rounded-2xl text-[10px] font-extrabold uppercase tracking-widest shadow-lg shadow-indigo-600/30 hover:bg-indigo-700 hover:shadow-indigo-600/50 transition">Contact
+                Us</a>
         </div>
     </header>
 
     <!-- HERO SECTION -->
     <section class="relative pt-12 pb-20 px-8 max-w-7xl mx-auto text-center">
-        <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-8 border border-indigo-500/20 shadow-sm">
+        <div
+            class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-8 border border-indigo-500/20 shadow-sm">
             <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
             Enterprise AI & Decentralized Systems
         </div>
         <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-[1.05] max-w-5xl mx-auto">
             Architecting High-Performance <br><span class="gradient-text">Web3 & AI Solutions.</span>
         </h1>
-        <p class="text-slate-500 dark:text-gray-400 text-lg md:text-xl mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
-            Ethlink is an elite technology lab engineering production-ready autonomous AI agents, enterprise smart contracts, protocol audits, and hybrid blockchain architectures.
+        <p
+            class="text-slate-500 dark:text-gray-400 text-lg md:text-xl mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
+            Ethlink is an elite technology lab engineering production-ready autonomous AI agents, enterprise smart
+            contracts, protocol audits, and hybrid blockchain architectures.
         </p>
         <div class="flex justify-center">
-            <a href="#services" class="bg-indigo-600 text-white px-10 py-4.5 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition">Explore Capabilities</a>
+            <a href="#services"
+                class="bg-indigo-600 text-white px-10 py-4.5 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition">Explore
+                Capabilities</a>
         </div>
     </section>
 
@@ -86,106 +135,185 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
+
             <!-- 1. Blockchain Consultancy -->
-            <div class="glass-panel p-8 rounded-[2rem] card-glow relative overflow-hidden flex flex-col justify-between group">
-                <div class="absolute -right-8 -top-8 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition-all"></div>
+            <div
+                class="glass-panel p-8 rounded-[2rem] card-glow relative overflow-hidden flex flex-col justify-between group">
+                <div
+                    class="absolute -right-8 -top-8 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition-all">
+                </div>
                 <div>
                     <div class="flex justify-between items-start mb-8">
-                        <div class="w-14 h-14 bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">⛓️</div>
-                        <span class="text-[10px] font-mono font-extrabold text-slate-400 bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full uppercase">Strategy</span>
+                        <div
+                            class="w-14 h-14 bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">
+                            ⛓️</div>
+                        <span
+                            class="text-[10px] font-mono font-extrabold text-slate-400 bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full uppercase">Strategy</span>
                     </div>
                     <h4 class="text-2xl font-bold mb-3 tracking-tight">Blockchain Consultancy</h4>
-                    <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Strategic guidance on Web3 architecture, custom tokenomics modeling, consensus engineering, and enterprise integration.</p>
+                    <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Strategic guidance on Web3
+                        architecture, custom tokenomics modeling, consensus engineering, and enterprise integration.</p>
                 </div>
-                <div class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs font-bold text-indigo-600 dark:text-indigo-400">
+                <div
+                    class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs font-bold text-indigo-600 dark:text-indigo-400">
                     <span>Tokenomics & Strategy</span>
-                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
                 </div>
             </div>
 
             <!-- 2. Smart Contract Engineering -->
-            <div class="glass-panel p-8 rounded-[2rem] card-glow relative overflow-hidden flex flex-col justify-between group">
-                <div class="absolute -right-8 -top-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all"></div>
+            <div
+                class="glass-panel p-8 rounded-[2rem] card-glow relative overflow-hidden flex flex-col justify-between group">
+                <div
+                    class="absolute -right-8 -top-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all">
+                </div>
                 <div>
                     <div class="flex justify-between items-start mb-8">
-                        <div class="w-14 h-14 bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">📝</div>
-                        <span class="text-[10px] font-mono font-extrabold text-slate-400 bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full uppercase">Development</span>
+                        <div
+                            class="w-14 h-14 bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">
+                            📝</div>
+                        <span
+                            class="text-[10px] font-mono font-extrabold text-slate-400 bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full uppercase">Development</span>
                     </div>
                     <h4 class="text-2xl font-bold mb-3 tracking-tight">Smart Contracts</h4>
-                    <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Custom, battle-tested, and gas-optimized smart contract development across EVM (Solidity) and non-EVM ecosystems (Rust/Move).</p>
+                    <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Custom, battle-tested, and
+                        gas-optimized smart contract development across EVM (Solidity) and non-EVM ecosystems
+                        (Rust/Move).</p>
                 </div>
-                <div class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs font-bold text-purple-600 dark:text-purple-400">
+                <div
+                    class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs font-bold text-purple-600 dark:text-purple-400">
                     <span>EVM & Rust Architecture</span>
-                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
                 </div>
             </div>
 
             <!-- 3. System Architecture -->
-            <div class="glass-panel p-8 rounded-[2rem] card-glow relative overflow-hidden flex flex-col justify-between group">
-                <div class="absolute -right-8 -top-8 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all"></div>
+            <div
+                class="glass-panel p-8 rounded-[2rem] card-glow relative overflow-hidden flex flex-col justify-between group">
+                <div
+                    class="absolute -right-8 -top-8 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all">
+                </div>
                 <div>
                     <div class="flex justify-between items-start mb-8">
-                        <div class="w-14 h-14 bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">🏗️</div>
-                        <span class="text-[10px] font-mono font-extrabold text-slate-400 bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full uppercase">Infrastructure</span>
+                        <div
+                            class="w-14 h-14 bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">
+                            🏗️</div>
+                        <span
+                            class="text-[10px] font-mono font-extrabold text-slate-400 bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full uppercase">Infrastructure</span>
                     </div>
                     <h4 class="text-2xl font-bold mb-3 tracking-tight">System Architecture</h4>
-                    <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Robust off-chain indexers, high-throughput RPC networks, and hybrid decentralized backends for high-scale enterprise applications.</p>
+                    <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Robust off-chain indexers,
+                        high-throughput RPC networks, and hybrid decentralized backends for high-scale enterprise
+                        applications.</p>
                 </div>
-                <div class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs font-bold text-blue-600 dark:text-blue-400">
+                <div
+                    class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs font-bold text-blue-600 dark:text-blue-400">
                     <span>Scalable Decentralized Infra</span>
-                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
                 </div>
             </div>
 
             <!-- 4. Security & Auditing -->
-            <div class="glass-panel p-8 rounded-[2rem] card-glow relative overflow-hidden flex flex-col justify-between group">
-                <div class="absolute -right-8 -top-8 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all"></div>
+            <div
+                class="glass-panel p-8 rounded-[2rem] card-glow relative overflow-hidden flex flex-col justify-between group">
+                <div
+                    class="absolute -right-8 -top-8 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all">
+                </div>
                 <div>
                     <div class="flex justify-between items-start mb-8">
-                        <div class="w-14 h-14 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">🛡️</div>
-                        <span class="text-[10px] font-mono font-extrabold text-slate-400 bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full uppercase">Security</span>
+                        <div
+                            class="w-14 h-14 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">
+                            🛡️</div>
+                        <span
+                            class="text-[10px] font-mono font-extrabold text-slate-400 bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full uppercase">Security</span>
                     </div>
                     <h4 class="text-2xl font-bold mb-3 tracking-tight">Security & Auditing</h4>
-                    <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Comprehensive smart contract audits, formal logic verification, penetrative testing, and continuous threat monitoring.</p>
+                    <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Comprehensive smart
+                        contract audits, formal logic verification, penetrative testing, and continuous threat
+                        monitoring.</p>
                 </div>
-                <div class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                <div
+                    class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs font-bold text-emerald-600 dark:text-emerald-400">
                     <span>Formal Logic Verification</span>
-                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
                 </div>
             </div>
 
-            <!-- 5. Autonomous AI Bots & Agents -->
-            <div class="glass-panel p-8 rounded-[2rem] card-glow relative overflow-hidden flex flex-col justify-between group">
-                <div class="absolute -right-8 -top-8 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl group-hover:bg-pink-500/20 transition-all"></div>
+            <!-- 5. Autonomous AI Agents & Intelligent Automation -->
+            <div
+                class="glass-panel p-8 rounded-[2rem] card-glow relative overflow-hidden flex flex-col justify-between group">
+                <div
+                    class="absolute -right-8 -top-8 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl group-hover:bg-pink-500/20 transition-all">
+                </div>
                 <div>
                     <div class="flex justify-between items-start mb-8">
-                        <div class="w-14 h-14 bg-pink-500/10 border border-pink-500/20 text-pink-600 dark:text-pink-400 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">🤖</div>
-                        <span class="text-[10px] font-mono font-extrabold text-slate-400 bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full uppercase">Autonomous AI</span>
+                        <div
+                            class="w-14 h-14 bg-pink-500/10 border border-pink-500/20 text-pink-600 dark:text-pink-400 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">
+                            🤖</div>
+                        <span
+                            class="text-[10px] font-mono font-extrabold text-slate-400 bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full uppercase">AI
+                            & Automation</span>
                     </div>
-                    <h4 class="text-2xl font-bold mb-3 tracking-tight">AI Agents & Bots</h4>
-                    <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Production-grade autonomous AI agents designed to execute automated trading, yield hedging, and algorithmic workflows on-chain.</p>
+                    <h4 class="text-2xl font-bold mb-3 tracking-tight">AI Agents & Automation</h4>
+                    <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Production-ready
+                        autonomous AI agents and intelligent workflows built for both Web2 enterprise platforms and Web3
+                        decentralized ecosystems.</p>
                 </div>
-                <div class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs font-bold text-pink-600 dark:text-pink-400">
-                    <span>Autonomous Execution Logic</span>
-                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <div
+                    class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs font-bold text-pink-600 dark:text-pink-400">
+                    <span>Cross-Platform Agentic Workflows</span>
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
                 </div>
             </div>
 
             <!-- 6. Enterprise Support AI -->
-            <div class="glass-panel p-8 rounded-[2rem] card-glow relative overflow-hidden flex flex-col justify-between group">
-                <div class="absolute -right-8 -top-8 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all"></div>
+            <div
+                class="glass-panel p-8 rounded-[2rem] card-glow relative overflow-hidden flex flex-col justify-between group">
+                <div
+                    class="absolute -right-8 -top-8 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all">
+                </div>
                 <div>
                     <div class="flex justify-between items-start mb-8">
-                        <div class="w-14 h-14 bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">💬</div>
-                        <span class="text-[10px] font-mono font-extrabold text-slate-400 bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full uppercase">Enterprise AI</span>
+                        <div
+                            class="w-14 h-14 bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">
+                            💬</div>
+                        <span
+                            class="text-[10px] font-mono font-extrabold text-slate-400 bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full uppercase">Enterprise
+                            AI</span>
                     </div>
                     <h4 class="text-2xl font-bold mb-3 tracking-tight">Enterprise Support AI</h4>
-                    <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Custom contextual LLMs engineered for enterprise customer care, technical troubleshooting, and complex customer workflows.</p>
+                    <p class="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Custom contextual LLMs
+                        engineered for enterprise customer care, technical troubleshooting, and complex customer
+                        workflows.</p>
                 </div>
-                <div class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs font-bold text-amber-600 dark:text-amber-400">
+                <div
+                    class="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-xs font-bold text-amber-600 dark:text-amber-400">
                     <span>Custom Enterprise LLMs</span>
-                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
                 </div>
             </div>
 
@@ -195,30 +323,42 @@
     <!-- FLAGSHIP PRODUCT SHOWCASE (EFIX CARD AT END OF PAGE) -->
     <section class="py-20 px-8 max-w-7xl mx-auto w-full">
         <div class="text-center mb-10">
-            <h2 class="text-[10px] font-extrabold text-indigo-500 uppercase tracking-[0.4em] mb-2">Flagship Innovation</h2>
+            <h2 class="text-[10px] font-extrabold text-indigo-500 uppercase tracking-[0.4em] mb-2">Flagship Innovation
+            </h2>
             <h3 class="text-3xl md:text-4xl font-black tracking-tight">Our Proprietary Product</h3>
         </div>
 
         <a href="efix.html" class="block group">
-            <div class="glass-panel p-8 md:p-14 rounded-[3rem] card-glow relative overflow-hidden border-2 border-indigo-500/20 bg-gradient-to-br from-indigo-500/5 via-transparent to-purple-500/5">
-                <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl group-hover:bg-indigo-600/30 transition-all duration-500"></div>
-                
+            <div
+                class="glass-panel p-8 md:p-14 rounded-[3rem] card-glow relative overflow-hidden border-2 border-indigo-500/20 bg-gradient-to-br from-indigo-500/5 via-transparent to-purple-500/5">
+                <div
+                    class="absolute -right-20 -bottom-20 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl group-hover:bg-indigo-600/30 transition-all duration-500">
+                </div>
+
                 <div class="grid lg:grid-cols-3 gap-8 items-center relative z-10">
                     <div class="lg:col-span-2 space-y-6">
                         <div class="flex items-center gap-3">
-                            <span class="px-4 py-1.5 rounded-full bg-indigo-600 text-white text-[10px] font-black uppercase tracking-widest shadow-md shadow-indigo-600/30">Proprietary Protocol</span>
+                            <span
+                                class="px-4 py-1.5 rounded-full bg-indigo-600 text-white text-[10px] font-black uppercase tracking-widest shadow-md shadow-indigo-600/30">Proprietary
+                                Protocol</span>
                             <span class="text-xs font-mono font-bold text-slate-400">v4.2 Live Engine</span>
                         </div>
                         <h4 class="text-3xl md:text-5xl font-black tracking-tight">EFIX Index & ELARA Engine</h4>
                         <p class="text-slate-500 dark:text-gray-400 text-base md:text-lg leading-relaxed font-medium">
-                            The multi-asset hedge basket powered by autonomous intelligence. Access a self-balancing index of Gold, RWA Stocks, and Crypto managed in real-time by the ELARA engine.
+                            The multi-asset hedge basket powered by autonomous intelligence. Access a self-balancing
+                            index of Gold, RWA Stocks, and Crypto managed in real-time by the ELARA engine.
                         </p>
                     </div>
 
                     <div class="flex lg:justify-end items-center">
-                        <div class="w-full lg:w-auto inline-flex items-center justify-center gap-4 bg-indigo-600 text-white px-10 py-5 rounded-2xl font-extrabold text-xs uppercase tracking-[0.2em] shadow-2xl shadow-indigo-600/40 group-hover:bg-indigo-700 group-hover:scale-105 transition-all duration-300">
+                        <div
+                            class="w-full lg:w-auto inline-flex items-center justify-center gap-4 bg-indigo-600 text-white px-10 py-5 rounded-2xl font-extrabold text-xs uppercase tracking-[0.2em] shadow-2xl shadow-indigo-600/40 group-hover:bg-indigo-700 group-hover:scale-105 transition-all duration-300">
                             Launch EFIX Protocol
-                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -227,13 +367,18 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="max-w-7xl mx-auto px-8 py-12 w-full flex flex-col md:flex-row justify-between items-center gap-6 border-t border-slate-200 dark:border-white/5">
+    <footer
+        class="max-w-7xl mx-auto px-8 py-12 w-full flex flex-col md:flex-row justify-between items-center gap-6 border-t border-slate-200 dark:border-white/5">
         <div class="flex items-center gap-3 opacity-80">
-            <div class="w-6 h-6 bg-indigo-600 rounded flex items-center justify-center font-black text-[10px] text-white">E</div>
+            <div
+                class="w-6 h-6 bg-indigo-600 rounded flex items-center justify-center font-black text-[10px] text-white">
+                E</div>
             <span class="text-[10px] font-bold uppercase tracking-[0.4em]">Ethlink Tech Labs</span>
         </div>
-        <a href="mailto:support@ethlink.tech" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all tracking-widest">support@ethlink.tech</a>
-        <div class="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30 tabular">&copy; ETHLINK_TECH_LABS_2026</div>
+        <a href="mailto:support@ethlink.tech"
+            class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all tracking-widest">support@ethlink.tech</a>
+        <div class="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30 tabular">&copy; ETHLINK_TECH_LABS_2026
+        </div>
     </footer>
 
     <script>
@@ -254,4 +399,5 @@
         });
     </script>
 </body>
+
 </html>
