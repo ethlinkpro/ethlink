@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethlink | Emin — AI Voice & Agent Companion</title>
+
+    <link rel="icon" type="image/png" href="logo.png">
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: { brand: { indigo: '#6366f1', dark: '#020305' } }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { transition: background-color 0.4s ease; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        .grid-blueprint { background-image: radial-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px); background-size: 32px 32px; }
+        .glass-panel { backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.7); }
+        .dark .glass-panel { border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); }
+        .gradient-text { background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .flicker { animation: flicker 0.15s ease-in-out; }
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; transform: translateX(2px); }
+            100% { opacity: 1; }
+        }
+
+        .emin-frame { width: 100%; height: 640px; border: 0; border-radius: 2.3rem; background: #1b2340; }
+        @media (max-width: 640px) { .emin-frame { height: 560px; } }
+    </style>
+</head>
+
+<body class="grid-blueprint bg-white text-slate-900 dark:bg-brand-dark dark:text-slate-100 min-h-screen flex flex-col justify-between">
+
+    <!-- FLOATING STYLISH NAVIGATION BAR -->
+    <header class="fixed top-6 left-0 right-0 z-50 max-w-7xl mx-auto px-6 flex justify-between items-center pointer-events-none">
+        <a href="index.html" class="pointer-events-auto inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel text-xs font-extrabold uppercase tracking-widest text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 border border-slate-200 dark:border-white/10 shadow-xl shadow-black/5 group transition-all duration-300 hover:scale-105">
+            <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <span>Back to Ethlink</span>
+        </a>
+
+        <button id="theme-toggle" class="pointer-events-auto p-3 rounded-2xl glass-panel border border-slate-200 dark:border-white/10 shadow-xl shadow-black/5 hover:bg-slate-100 dark:hover:bg-white/5 transition duration-300">
+            <svg id="theme-icon-dark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-icon-light" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+        </button>
+    </header>
+
+    <!-- EMIN HERO SECTION -->
+    <section id="emin" class="relative pt-36 pb-20 px-8 max-w-7xl mx-auto w-full">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-8 border border-indigo-500/20">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Live Now · Emin for Education
+                </div>
+                <h1 class="text-6xl md:text-[5.5rem] font-black tracking-tighter mb-8 leading-[0.9] text-slate-900 dark:text-white">
+                    Meet <br><span class="gradient-text">Emin.</span>
+                </h1>
+                <p class="text-slate-500 dark:text-gray-400 text-lg md:text-xl mb-6 max-w-lg leading-relaxed font-medium">
+                    <b>Emin</b> is our AI voice & agent engine — a hands-free, bilingual companion that listens
+                    for real speech instead of a push-to-talk button, and replies in a natural voice in real
+                    time.
+                </p>
+                <p class="text-slate-500 dark:text-gray-400 text-base mb-10 max-w-lg leading-relaxed">
+                    What's live below is <b>Emin for Education</b>. The same engine also powers purpose-built
+                    versions for other sectors — healthcare, hospitality, retail, enterprise, and more.
+                </p>
+                <div class="flex">
+                    <a href="https://emin-kutty-app.vercel.app" target="_blank" rel="noopener noreferrer" class="text-center bg-indigo-600 text-white px-10 py-4.5 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition">
+                        Open Emin Full Screen ↗
+                    </a>
+                </div>
+            </div>
+
+            <!-- LIVE EMIN DEMO EMBED -->
+            <div id="demo" class="glass-panel p-1 rounded-[2.5rem] relative group border border-slate-200 dark:border-white/10 shadow-2xl scroll-mt-28">
+                <div class="bg-white/40 dark:bg-[#0b0e14] p-3 md:p-4 rounded-[2.3rem]">
+                    <div class="flex justify-between items-center mb-3 px-2">
+                        <h3 class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest italic">Live Demo · Emin for Education</h3>
+                        <a href="https://emin-kutty-app.vercel.app" target="_blank" rel="noopener noreferrer" class="text-[10px] font-bold text-indigo-500 hover:underline">Open in new tab ↗</a>
+                    </div>
+                    <iframe
+                        class="emin-frame"
+                        src="https://emin-kutty-app.vercel.app"
+                        title="Emin — Live AI Voice Companion"
+                        allow="microphone; autoplay"
+                        loading="lazy">
+                    </iframe>
+                    <p class="text-[10px] text-slate-400 text-center mt-3 px-4">Live, in production. If it doesn't load here, use "Open Full Screen".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ONE ENGINE, EVERY SECTOR -->
+    <section class="py-16 px-8 max-w-7xl mx-auto w-full">
+        <div class="text-center mb-14">
+            <h2 class="text-[10px] font-extrabold text-indigo-500 uppercase tracking-[0.4em] mb-3">Beyond Education</h2>
+            <h3 class="text-4xl md:text-5xl font-black tracking-tight mb-4">One Engine, Every Sector.</h3>
+            <p class="text-slate-500 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                Emin is the name of our AI voice & agent engine. <b>Emin for Education</b> is live today —
+                the same engine is purpose-built for the sectors below, each one engineered around how that
+                industry actually works.
+            </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            <div class="glass-panel p-5 rounded-2xl card-glow flex items-start gap-4 border border-emerald-500/20">
+                <div class="w-12 h-12 shrink-0 bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🎓</div>
+                <div class="min-w-0">
+                    <div class="flex items-center gap-2 mb-1">
+                        <h5 class="text-base font-bold tracking-tight">Emin for Education</h5>
+                        <span class="text-[9px] font-mono font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full uppercase shrink-0">Live</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed">School & campus companions that answer student and parent questions in real time.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl card-glow flex items-start gap-4">
+                <div class="w-12 h-12 shrink-0 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🏥</div>
+                <div class="min-w-0">
+                    <h5 class="text-base font-bold tracking-tight mb-1">Emin for Healthcare</h5>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed">Patient intake, appointment FAQs, and wellness check-in voice assistants.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl card-glow flex items-start gap-4">
+                <div class="w-12 h-12 shrink-0 bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🏨</div>
+                <div class="min-w-0">
+                    <h5 class="text-base font-bold tracking-tight mb-1">Emin for Hospitality & Retail</h5>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed">Concierge-style voice assistants that greet, guide, and answer guest or customer questions.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl card-glow flex items-start gap-4">
+                <div class="w-12 h-12 shrink-0 bg-pink-500/10 border border-pink-500/20 text-pink-600 dark:text-pink-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🏢</div>
+                <div class="min-w-0">
+                    <h5 class="text-base font-bold tracking-tight mb-1">Emin for Enterprise</h5>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed">Internal support agents for onboarding, HR FAQs, and employee helpdesks.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl card-glow flex items-start gap-4">
+                <div class="w-12 h-12 shrink-0 bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🏦</div>
+                <div class="min-w-0">
+                    <h5 class="text-base font-bold tracking-tight mb-1">Emin for Financial Services</h5>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed">Client-facing voice assistants for account guidance and service FAQs.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl card-glow flex items-start gap-4">
+                <div class="w-12 h-12 shrink-0 bg-violet-500/10 border border-violet-500/20 text-violet-600 dark:text-violet-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🏘️</div>
+                <div class="min-w-0">
+                    <h5 class="text-base font-bold tracking-tight mb-1">Emin for Real Estate</h5>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed">Virtual leasing agents and property voice guides available around the clock.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-10">
+            <a href="mailto:support@ethlink.tech" class="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-widest hover:underline underline-offset-8">
+                Want this built for your sector? Get in touch
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- HOW EMIN WORKS -->
+    <section class="relative bg-indigo-600/[0.02] border-y border-slate-200 dark:border-white/5 py-24 px-8 my-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-[10px] font-extrabold text-indigo-500 uppercase tracking-[0.4em] mb-4">Under the Hood · Emin for Education</h2>
+                <h3 class="text-4xl md:text-5xl font-black italic tracking-tight">The Emin Engine.</h3>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="glass-panel p-1 rounded-[2.5rem] shadow-2xl">
+                    <div class="bg-white/40 dark:bg-[#0b0e14] p-8 md:p-10 rounded-[2.3rem] font-mono text-[13px] leading-relaxed min-h-[180px]">
+                        <div class="flex justify-between items-center mb-6 border-b border-slate-200 dark:border-white/5 pb-4">
+                            <span class="text-indigo-500 font-bold tracking-widest uppercase">EMIN_Voice::v1.0</span>
+                            <span id="terminal-status" class="text-slate-500 italic flicker">Listening...</span>
+                        </div>
+                        <div id="logic-lines" class="space-y-3 text-slate-500 dark:text-gray-400">
+                            <p>// Signal: Speech_Detected</p>
+                            <p class="text-emerald-500">// Action: Transcribing_Whisper_STT</p>
+                            <p>// Objective: Natural_Reply_In_Progress</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="group">
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">
+                            <span class="w-8 h-[2px] bg-indigo-600"></span> Natural, Hands-Free Flow
+                        </h4>
+                        <p class="text-slate-500 dark:text-gray-400 leading-relaxed font-medium text-base">Emin listens for real speech and silence, not a push-to-talk button — the conversation flows naturally, and Emin knows exactly when a turn is done.</p>
+                    </div>
+                    <div class="group">
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">
+                            <span class="w-8 h-[2px] bg-indigo-600"></span> Bilingual Awareness
+                        </h4>
+                        <p class="text-slate-500 dark:text-gray-400 leading-relaxed font-medium text-base">If a child answers in another language, Emin notices and gently guides the conversation back to English — no dead ends, no confusion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="max-w-7xl mx-auto px-8 py-12 w-full flex flex-col md:flex-row justify-between items-center gap-6 border-t border-slate-200 dark:border-white/5">
+        <div class="flex items-center gap-3 opacity-60">
+            <div class="w-6 h-6 bg-indigo-600 rounded flex items-center justify-center font-black text-[10px] text-white">E</div>
+            <span class="text-[10px] font-bold uppercase tracking-[0.4em]">Ethlink Tech Labs</span>
+        </div>
+        <a href="mailto:support@ethlink.tech" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all tracking-widest">support@ethlink.tech</a>
+        <div class="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30">&copy; ETHLINK_TECH_LABS_2026</div>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        const darkI = document.getElementById('theme-icon-dark');
+        const lightI = document.getElementById('theme-icon-light');
+
+        function updateIcons() {
+            const isDark = document.documentElement.classList.contains('dark');
+            darkI?.classList.toggle('hidden', isDark);
+            lightI?.classList.toggle('hidden', !isDark);
+        }
+        updateIcons();
+        themeBtn?.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateIcons();
+        });
+
+        const logicLogs = [
+            ["// Signal: Speech_Detected", "// Action: Transcribing_Whisper_STT", "// Status: Listening_Complete"],
+            ["// Check: Language_Detected = English", "// Action: Routing_To_Reply_Model", "// Status: Clear"],
+            ["// Check: Language_Detected = Non_English", "// Action: Gentle_English_Redirect", "// Status: Guided"],
+            ["// Signal: Reply_Ready", "// Action: Speaking_Response_Chunked", "// Status: Voice_Active"],
+            ["// Signal: Silence_1.8s", "// Action: Turn_Complete", "// Status: Ready_For_Next"]
+        ];
+        const statusText = ["Listening...", "Understood_English", "Redirecting_To_English", "Speaking...", "Turn_Complete"];
+        let count = 0;
+
+        function updateTerminal() {
+            const statusEl = document.getElementById('terminal-status');
+            const logicEl = document.getElementById('logic-lines');
+            const i = count % logicLogs.length;
+            statusEl.innerText = statusText[i];
+            logicEl.innerHTML = logicLogs[i].map(l => `<p>${l}</p>`).join('');
+            count++;
+            setTimeout(updateTerminal, 2600);
+        }
+        setTimeout(updateTerminal, 1200);
+    </script>
+</body>
+</html>
