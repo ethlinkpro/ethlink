@@ -98,6 +98,7 @@
                         <a href="https://emin-kutty-app.vercel.app" target="_blank" rel="noopener noreferrer" class="text-[10px] font-bold text-indigo-500 hover:underline">Open in new tab ↗</a>
                     </div>
                     <iframe
+                        id="emin-iframe"
                         class="emin-frame"
                         src="https://emin-kutty-app.vercel.app"
                         title="Emin — Live AI Voice Companion"
@@ -273,6 +274,40 @@
             setTimeout(updateTerminal, 2600);
         }
         setTimeout(updateTerminal, 1200);
+
+        // --- Pause Emin when the embed scrolls out of view -----------------
+        // The Emin iframe keeps running its own JS (including the mic and
+        // speech synthesis) even when it's scrolled off-screen — browsers
+        // don't pause iframes just because they're not visible. Without
+        // this, a visitor who scrolls past the demo to read the rest of
+        // the page would still have Emin listening/talking in the
+        // background. This watches the iframe's on-screen position and
+        // tells Emin (via postMessage) to end the conversation once it's
+        // fully scrolled out of view. Emin's own code (page.tsx) listens
+        // for this message — see the "Lets the embedding page..." comment
+        // there.
+        (function () {
+            var eminIframe = document.getElementById('emin-iframe');
+            var EMIN_ORIGIN = 'https://emin-kutty-app.vercel.app';
+            if (!eminIframe || !('IntersectionObserver' in window)) return;
+
+            var wasVisible = true;
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting && wasVisible) {
+                        wasVisible = false;
+                        eminIframe.contentWindow.postMessage(
+                            { source: 'emin-embed', type: 'pause' },
+                            EMIN_ORIGIN
+                        );
+                    } else if (entry.isIntersecting) {
+                        wasVisible = true;
+                    }
+                });
+            }, { threshold: 0 });
+
+            observer.observe(eminIframe);
+        })();
     </script>
 </body>
 </html>
