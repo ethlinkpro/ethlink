@@ -45,6 +45,31 @@
 
         .emin-frame { width: 100%; height: 640px; border: 0; border-radius: 2.3rem; background: #1b2340; }
         @media (max-width: 640px) { .emin-frame { height: 560px; } }
+
+        /* Sector cards: real <button> elements so click + keyboard (Enter/Space)
+           both work for free, with a visible focus ring and a distinct
+           "currently loaded" state layered on top of the existing glass-panel
+           card look. */
+        .sector-card {
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            background-color: transparent;
+        }
+        .sector-card:focus-visible {
+            outline: 2px solid #6366f1;
+            outline-offset: 3px;
+        }
+        .glass-panel.sector-card.is-active {
+            border-color: rgba(99, 102, 241, 0.55);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18), 0 20px 40px -15px rgba(99, 102, 241, 0.35);
+        }
+        .dark .glass-panel.sector-card.is-active {
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3), 0 20px 40px -15px rgba(99, 102, 241, 0.5);
+        }
+        .sector-card--disabled {
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
@@ -69,7 +94,7 @@
             <div class="text-left">
                 <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-8 border border-indigo-500/20">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Live Now · Emin for Education
+                    <span id="hero-live-badge">Live Now · Emin for Education</span>
                 </div>
                 <h1 class="text-6xl md:text-[5.5rem] font-black tracking-tighter mb-8 leading-[0.9] text-slate-900 dark:text-white">
                     Meet <br><span class="gradient-text">Emin.</span>
@@ -79,12 +104,11 @@
                     for real speech instead of a push-to-talk button, and replies in a natural voice in real
                     time.
                 </p>
-                <p class="text-slate-500 dark:text-gray-400 text-base mb-10 max-w-lg leading-relaxed">
-                    What's live below is <b>Emin for Education</b>. The same engine also powers purpose-built
-                    versions for other sectors — healthcare, hospitality, retail, enterprise, and more.
+                <p id="hero-active-sector-text" class="text-slate-500 dark:text-gray-400 text-base mb-10 max-w-lg leading-relaxed">
+                    You're viewing <b>Emin for Education</b> below. Scroll down to try any of our other live sectors — tap a card to switch instantly.
                 </p>
                 <div class="flex">
-                    <a href="https://emin-kutty-app.vercel.app" target="_blank" rel="noopener noreferrer" class="text-center bg-indigo-600 text-white px-10 py-4.5 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition">
+                    <a id="open-fullscreen-link" href="https://emin-kutty-app.vercel.app" target="_blank" rel="noopener noreferrer" class="text-center bg-indigo-600 text-white px-10 py-4.5 rounded-2xl font-extrabold text-[11px] uppercase tracking-[0.2em] shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition">
                         Open Emin Full Screen ↗
                     </a>
                 </div>
@@ -94,17 +118,26 @@
             <div id="demo" class="glass-panel p-1 rounded-[2.5rem] relative group border border-slate-200 dark:border-white/10 shadow-2xl scroll-mt-28">
                 <div class="bg-white/40 dark:bg-[#0b0e14] p-3 md:p-4 rounded-[2.3rem]">
                     <div class="flex justify-between items-center mb-3 px-2">
-                        <h3 class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest italic">Live Demo · Emin for Education</h3>
-                        <a href="https://emin-kutty-app.vercel.app" target="_blank" rel="noopener noreferrer" class="text-[10px] font-bold text-indigo-500 hover:underline">Open in new tab ↗</a>
+                        <h3 id="demo-sector-label" class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest italic">Live Demo · Emin for Education</h3>
+                        <a id="open-newtab-link" href="https://emin-kutty-app.vercel.app" target="_blank" rel="noopener noreferrer" class="text-[10px] font-bold text-indigo-500 hover:underline">Open in new tab ↗</a>
                     </div>
-                    <iframe
-                        id="emin-iframe"
-                        class="emin-frame"
-                        src="https://emin-kutty-app.vercel.app"
-                        title="Emin — Live AI Voice Companion"
-                        allow="microphone; autoplay"
-                        loading="lazy">
-                    </iframe>
+                    <div class="relative">
+                        <iframe
+                            id="emin-iframe"
+                            class="emin-frame"
+                            src="https://emin-kutty-app.vercel.app"
+                            title="Emin — Live AI Voice Companion (Education)"
+                            allow="microphone; autoplay"
+                            loading="lazy">
+                        </iframe>
+                        <div id="demo-loading-overlay" class="absolute inset-0 rounded-[2.3rem] flex flex-col items-center justify-center gap-3 bg-[#1b2340] transition-opacity duration-300">
+                            <svg class="animate-spin h-7 w-7 text-indigo-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                            </svg>
+                            <span id="demo-loading-text" class="text-[10px] font-bold text-white/70 uppercase tracking-widest px-4 text-center">Loading Emin for Education…</span>
+                        </div>
+                    </div>
                     <p class="text-[10px] text-slate-400 text-center mt-3 px-4">Live, in production. If it doesn't load here, use "Open Full Screen".</p>
                 </div>
             </div>
@@ -114,67 +147,138 @@
     <!-- ONE ENGINE, EVERY SECTOR -->
     <section class="py-16 px-8 max-w-7xl mx-auto w-full">
         <div class="text-center mb-14">
-            <h2 class="text-[10px] font-extrabold text-indigo-500 uppercase tracking-[0.4em] mb-3">Beyond Education</h2>
-            <h3 class="text-4xl md:text-5xl font-black tracking-tight mb-4">One Engine, Every Sector.</h3>
+            <h2 class="text-[10px] font-extrabold text-indigo-500 uppercase tracking-[0.4em] mb-3">One Engine, Every Sector</h2>
+            <h3 class="text-4xl md:text-5xl font-black tracking-tight mb-4">Try Emin, Sector by Sector.</h3>
             <p class="text-slate-500 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                Emin is the name of our AI voice & agent engine. <b>Emin for Education</b> is live today —
-                the same engine is purpose-built for the sectors below, each one engineered around how that
-                industry actually works.
+                Emin is the name of our AI voice & agent engine, and every sector below is <b>live</b> today
+                except Retail, which is coming soon. <b>Tap any live sector to load its demo in the player above.</b>
             </p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-            <div class="glass-panel p-5 rounded-2xl card-glow flex items-start gap-4 border border-emerald-500/20">
+            <button type="button"
+                class="glass-panel sector-card p-5 rounded-2xl card-glow is-active flex items-start gap-4 border border-emerald-500/20"
+                data-sector-url="https://emin-kutty-app.vercel.app"
+                data-sector-name="Education"
+                aria-pressed="true">
                 <div class="w-12 h-12 shrink-0 bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🎓</div>
                 <div class="min-w-0">
-                    <div class="flex items-center gap-2 mb-1">
+                    <div class="flex items-center gap-2 mb-1 flex-wrap">
                         <h5 class="text-base font-bold tracking-tight">Emin for Education</h5>
                         <span class="text-[9px] font-mono font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full uppercase shrink-0">Live</span>
+                        <span class="sector-active-tag items-center gap-1 text-[9px] font-mono font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full uppercase shrink-0" style="display:inline-flex">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>Playing
+                        </span>
                     </div>
-                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed">School & campus companions that answer student and parent questions in real time.</p>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed text-left">School & campus companions that answer student and parent questions in real time.</p>
                 </div>
-            </div>
+            </button>
 
-            <div class="glass-panel p-5 rounded-2xl card-glow flex items-start gap-4">
+            <button type="button"
+                class="glass-panel sector-card p-5 rounded-2xl card-glow flex items-start gap-4 border border-emerald-500/20"
+                data-sector-url="https://emin-healthcare.vercel.app"
+                data-sector-name="Healthcare"
+                aria-pressed="false">
                 <div class="w-12 h-12 shrink-0 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🏥</div>
                 <div class="min-w-0">
-                    <h5 class="text-base font-bold tracking-tight mb-1">Emin for Healthcare</h5>
-                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed">Patient intake, appointment FAQs, and wellness check-in voice assistants.</p>
+                    <div class="flex items-center gap-2 mb-1 flex-wrap">
+                        <h5 class="text-base font-bold tracking-tight">Emin for Healthcare</h5>
+                        <span class="text-[9px] font-mono font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full uppercase shrink-0">Live</span>
+                        <span class="sector-active-tag items-center gap-1 text-[9px] font-mono font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full uppercase shrink-0" style="display:none">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>Playing
+                        </span>
+                    </div>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed text-left">Patient intake, appointment FAQs, and wellness check-in voice assistants.</p>
                 </div>
-            </div>
+            </button>
 
-            <div class="glass-panel p-5 rounded-2xl card-glow flex items-start gap-4">
+            <button type="button"
+                class="glass-panel sector-card p-5 rounded-2xl card-glow flex items-start gap-4 border border-emerald-500/20"
+                data-sector-url="https://emin-hospitality-retail.vercel.app"
+                data-sector-name="Hospitality"
+                aria-pressed="false">
                 <div class="w-12 h-12 shrink-0 bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🏨</div>
                 <div class="min-w-0">
-                    <h5 class="text-base font-bold tracking-tight mb-1">Emin for Hospitality & Retail</h5>
-                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed">Concierge-style voice assistants that greet, guide, and answer guest or customer questions.</p>
+                    <div class="flex items-center gap-2 mb-1 flex-wrap">
+                        <h5 class="text-base font-bold tracking-tight">Emin for Hospitality</h5>
+                        <span class="text-[9px] font-mono font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full uppercase shrink-0">Live</span>
+                        <span class="sector-active-tag items-center gap-1 text-[9px] font-mono font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full uppercase shrink-0" style="display:none">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>Playing
+                        </span>
+                    </div>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed text-left">Concierge-style voice assistants that greet, guide, and answer guest questions.</p>
                 </div>
-            </div>
+            </button>
 
-            <div class="glass-panel p-5 rounded-2xl card-glow flex items-start gap-4">
+            <button type="button"
+                class="glass-panel sector-card p-5 rounded-2xl card-glow flex items-start gap-4 border border-emerald-500/20"
+                data-sector-url="https://emin-enterprise.vercel.app"
+                data-sector-name="Enterprise"
+                aria-pressed="false">
                 <div class="w-12 h-12 shrink-0 bg-pink-500/10 border border-pink-500/20 text-pink-600 dark:text-pink-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🏢</div>
                 <div class="min-w-0">
-                    <h5 class="text-base font-bold tracking-tight mb-1">Emin for Enterprise</h5>
-                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed">Internal support agents for onboarding, HR FAQs, and employee helpdesks.</p>
+                    <div class="flex items-center gap-2 mb-1 flex-wrap">
+                        <h5 class="text-base font-bold tracking-tight">Emin for Enterprise</h5>
+                        <span class="text-[9px] font-mono font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full uppercase shrink-0">Live</span>
+                        <span class="sector-active-tag items-center gap-1 text-[9px] font-mono font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full uppercase shrink-0" style="display:none">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>Playing
+                        </span>
+                    </div>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed text-left">Internal support agents for onboarding, HR FAQs, and employee helpdesks.</p>
                 </div>
-            </div>
+            </button>
 
-            <div class="glass-panel p-5 rounded-2xl card-glow flex items-start gap-4">
+            <button type="button"
+                class="glass-panel sector-card p-5 rounded-2xl card-glow flex items-start gap-4 border border-emerald-500/20"
+                data-sector-url="https://emin-financial.vercel.app"
+                data-sector-name="Financial Services"
+                aria-pressed="false">
                 <div class="w-12 h-12 shrink-0 bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🏦</div>
                 <div class="min-w-0">
-                    <h5 class="text-base font-bold tracking-tight mb-1">Emin for Financial Services</h5>
-                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed">Client-facing voice assistants for account guidance and service FAQs.</p>
+                    <div class="flex items-center gap-2 mb-1 flex-wrap">
+                        <h5 class="text-base font-bold tracking-tight">Emin for Financial Services</h5>
+                        <span class="text-[9px] font-mono font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full uppercase shrink-0">Live</span>
+                        <span class="sector-active-tag items-center gap-1 text-[9px] font-mono font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full uppercase shrink-0" style="display:none">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>Playing
+                        </span>
+                    </div>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed text-left">Client-facing voice assistants for account guidance and service FAQs.</p>
                 </div>
-            </div>
+            </button>
 
-            <div class="glass-panel p-5 rounded-2xl card-glow flex items-start gap-4">
+            <button type="button"
+                class="glass-panel sector-card p-5 rounded-2xl card-glow flex items-start gap-4 border border-emerald-500/20"
+                data-sector-url="https://emin-real-estate.vercel.app"
+                data-sector-name="Real Estate"
+                aria-pressed="false">
                 <div class="w-12 h-12 shrink-0 bg-violet-500/10 border border-violet-500/20 text-violet-600 dark:text-violet-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🏘️</div>
                 <div class="min-w-0">
-                    <h5 class="text-base font-bold tracking-tight mb-1">Emin for Real Estate</h5>
-                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed">Virtual leasing agents and property voice guides available around the clock.</p>
+                    <div class="flex items-center gap-2 mb-1 flex-wrap">
+                        <h5 class="text-base font-bold tracking-tight">Emin for Real Estate</h5>
+                        <span class="text-[9px] font-mono font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full uppercase shrink-0">Live</span>
+                        <span class="sector-active-tag items-center gap-1 text-[9px] font-mono font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full uppercase shrink-0" style="display:none">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>Playing
+                        </span>
+                    </div>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed text-left">Virtual leasing agents and property voice guides available around the clock.</p>
                 </div>
-            </div>
+            </button>
+
+            <button type="button"
+                class="glass-panel sector-card sector-card--disabled p-5 rounded-2xl flex items-start gap-4 border border-slate-300/30 dark:border-white/5 opacity-70"
+                disabled
+                aria-disabled="true"
+                aria-pressed="false">
+                <div class="w-12 h-12 shrink-0 bg-slate-400/10 border border-slate-400/20 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🛍️</div>
+                <div class="min-w-0">
+                    <div class="flex items-center gap-2 mb-1 flex-wrap">
+                        <h5 class="text-base font-bold tracking-tight">Emin for Retail</h5>
+                        <span class="text-[9px] font-mono font-extrabold text-slate-500 dark:text-slate-400 bg-slate-400/10 px-2 py-0.5 rounded-full uppercase shrink-0">Coming Soon</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed text-left">In-store and online shopping assistants for browsing, product FAQs, and customer support.</p>
+                </div>
+            </button>
 
         </div>
 
@@ -190,7 +294,7 @@
     <section class="relative bg-indigo-600/[0.02] border-y border-slate-200 dark:border-white/5 py-24 px-8 my-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-[10px] font-extrabold text-indigo-500 uppercase tracking-[0.4em] mb-4">Under the Hood · Emin for Education</h2>
+                <h2 class="text-[10px] font-extrabold text-indigo-500 uppercase tracking-[0.4em] mb-4">Under the Hood · How It Works</h2>
                 <h3 class="text-4xl md:text-5xl font-black italic tracking-tight">The Emin Engine.</h3>
             </div>
 
@@ -220,7 +324,7 @@
                         <h4 class="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">
                             <span class="w-8 h-[2px] bg-indigo-600"></span> Bilingual Awareness
                         </h4>
-                        <p class="text-slate-500 dark:text-gray-400 leading-relaxed font-medium text-base">If a child answers in another language, Emin notices and gently guides the conversation back to English — no dead ends, no confusion.</p>
+                        <p class="text-slate-500 dark:text-gray-400 leading-relaxed font-medium text-base">If someone answers in another language, Emin notices and gently guides the conversation back to English — no dead ends, no confusion.</p>
                     </div>
                 </div>
             </div>
@@ -275,38 +379,149 @@
         }
         setTimeout(updateTerminal, 1200);
 
-        // --- Pause Emin when the embed scrolls out of view -----------------
-        // The Emin iframe keeps running its own JS (including the mic and
-        // speech synthesis) even when it's scrolled off-screen — browsers
-        // don't pause iframes just because they're not visible. Without
-        // this, a visitor who scrolls past the demo to read the rest of
-        // the page would still have Emin listening/talking in the
-        // background. This watches the iframe's on-screen position and
-        // tells Emin (via postMessage) to end the conversation once it's
-        // fully scrolled out of view. Emin's own code (page.tsx) listens
-        // for this message — see the "Lets the embedding page..." comment
-        // there.
+        // --- Sector switching + scroll-pause -------------------------------
+        // Handles two things for the "One Engine, Every Sector" cards:
+        //
+        // 1. Clicking a live sector card loads that sector's deployment into
+        //    the demo iframe above, marks that card as the active/"Playing"
+        //    one, and updates every piece of copy that names the current
+        //    sector (hero badge, hero paragraph, demo label, full-screen /
+        //    new-tab links). The Retail card ships with the native `disabled`
+        //    attribute, so it's inert by construction — no click handler is
+        //    attached to it at all.
+        //
+        // 2. The original "pause Emin when the embed scrolls out of view"
+        //    behavior (see emin-kutty-app's page.tsx, which listens for this
+        //    postMessage) — except EMIN_ORIGIN is no longer a fixed constant,
+        //    since the iframe's origin now changes every time a different
+        //    sector is loaded. `currentOrigin` below is kept in sync by
+        //    loadSector() so the pause message always targets whichever
+        //    deployment is actually loaded.
         (function () {
-            var eminIframe = document.getElementById('emin-iframe');
-            var EMIN_ORIGIN = 'https://emin-kutty-app.vercel.app';
-            if (!eminIframe || !('IntersectionObserver' in window)) return;
+            var iframe = document.getElementById('emin-iframe');
+            var overlay = document.getElementById('demo-loading-overlay');
+            var overlayText = document.getElementById('demo-loading-text');
+            var demoLabel = document.getElementById('demo-sector-label');
+            var heroLiveBadge = document.getElementById('hero-live-badge');
+            var heroActiveText = document.getElementById('hero-active-sector-text');
+            var fullscreenLink = document.getElementById('open-fullscreen-link');
+            var newTabLink = document.getElementById('open-newtab-link');
+            var cards = document.querySelectorAll('.sector-card');
+            if (!iframe || !cards.length) return;
 
-            var wasVisible = true;
-            var observer = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (!entry.isIntersecting && wasVisible) {
-                        wasVisible = false;
-                        eminIframe.contentWindow.postMessage(
-                            { source: 'emin-embed', type: 'pause' },
-                            EMIN_ORIGIN
-                        );
-                    } else if (entry.isIntersecting) {
-                        wasVisible = true;
-                    }
+            var currentUrl = '';
+            var currentOrigin = '';
+            var loadingTimeoutId = null;
+
+            function originOf(url) {
+                try { return new URL(url).origin; } catch (e) { return ''; }
+            }
+
+            function showOverlay(text) {
+                if (!overlay) return;
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                if (overlayText && text) overlayText.textContent = text;
+                if (loadingTimeoutId) clearTimeout(loadingTimeoutId);
+                // Safety net: if the iframe's load event never fires (e.g. a
+                // slow cold start), don't leave the spinner up forever.
+                loadingTimeoutId = setTimeout(hideOverlay, 6000);
+            }
+
+            function hideOverlay() {
+                if (!overlay) return;
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                if (loadingTimeoutId) { clearTimeout(loadingTimeoutId); loadingTimeoutId = null; }
+            }
+
+            function setActiveCard(button) {
+                cards.forEach(function (card) {
+                    var isActive = card === button;
+                    card.classList.toggle('is-active', isActive);
+                    card.setAttribute('aria-pressed', String(isActive));
+                    var tag = card.querySelector('.sector-active-tag');
+                    if (tag) tag.style.display = isActive ? 'inline-flex' : 'none';
                 });
-            }, { threshold: 0 });
+            }
 
-            observer.observe(eminIframe);
+            function loadSector(button, scrollToDemo) {
+                var url = button.getAttribute('data-sector-url');
+                var name = button.getAttribute('data-sector-name');
+                if (!url || !name) return;
+
+                if (url !== currentUrl) {
+                    currentUrl = url;
+                    currentOrigin = originOf(url);
+
+                    showOverlay('Loading Emin for ' + name + '…');
+                    iframe.src = url;
+                    iframe.title = 'Emin — Live AI Voice Companion (' + name + ')';
+
+                    if (demoLabel) demoLabel.textContent = 'Live Demo · Emin for ' + name;
+                    if (heroLiveBadge) heroLiveBadge.textContent = 'Live Now · Emin for ' + name;
+                    if (heroActiveText) {
+                        heroActiveText.innerHTML =
+                            'You\'re viewing <b>Emin for ' + name + '</b> below. Scroll down to try any of our other live sectors — tap a card to switch instantly.';
+                    }
+                    if (fullscreenLink) fullscreenLink.setAttribute('href', url);
+                    if (newTabLink) newTabLink.setAttribute('href', url);
+                }
+
+                setActiveCard(button);
+
+                if (scrollToDemo) {
+                    var demoEl = document.getElementById('demo');
+                    if (demoEl) demoEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            iframe.addEventListener('load', hideOverlay);
+
+            cards.forEach(function (card) {
+                if (card.disabled) return; // Retail — "coming soon", intentionally inert
+                card.addEventListener('click', function () { loadSector(card, true); });
+            });
+
+            // Initialize from whichever card ships marked active in the markup
+            // (Education, by default) and arm the loading overlay for the
+            // very first load too.
+            var initialCard = document.querySelector('.sector-card.is-active');
+            if (initialCard) {
+                currentUrl = initialCard.getAttribute('data-sector-url') || '';
+                currentOrigin = originOf(currentUrl);
+            }
+            showOverlay(overlayText ? overlayText.textContent : 'Loading…');
+
+            // --- Pause Emin when the embed scrolls out of view -----------------
+            // The Emin iframe keeps running its own JS (including the mic and
+            // speech synthesis) even when it's scrolled off-screen — browsers
+            // don't pause iframes just because they're not visible. Without
+            // this, a visitor who scrolls past the demo to read the rest of
+            // the page would still have Emin listening/talking in the
+            // background. This watches the iframe's on-screen position and
+            // tells Emin (via postMessage) to end the conversation once it's
+            // fully scrolled out of view. Emin's own code (page.tsx) listens
+            // for this message — see the "Lets the embedding page..." comment
+            // there.
+            if ('IntersectionObserver' in window) {
+                var wasVisible = true;
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (!entry.isIntersecting && wasVisible) {
+                            wasVisible = false;
+                            if (currentOrigin && iframe.contentWindow) {
+                                iframe.contentWindow.postMessage(
+                                    { source: 'emin-embed', type: 'pause' },
+                                    currentOrigin
+                                );
+                            }
+                        } else if (entry.isIntersecting) {
+                            wasVisible = true;
+                        }
+                    });
+                }, { threshold: 0 });
+
+                observer.observe(iframe);
+            }
         })();
     </script>
 </body>
