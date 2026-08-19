@@ -150,8 +150,8 @@
             <h2 class="text-[10px] font-extrabold text-indigo-500 uppercase tracking-[0.4em] mb-3">One Engine, Every Sector</h2>
             <h3 class="text-4xl md:text-5xl font-black tracking-tight mb-4">Try Emin, Sector by Sector.</h3>
             <p class="text-slate-500 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                Emin is the name of our AI voice & agent engine, and every sector below is <b>live</b> today
-                except Retail, which is coming soon. <b>Tap any live sector to load its demo in the player above.</b>
+                Emin is the name of our AI voice & agent engine, and every sector below is <b>live</b> today.
+                <b>Tap any live sector to load its demo in the player above.</b>
             </p>
         </div>
 
@@ -266,17 +266,20 @@
             </button>
 
             <button type="button"
-                class="glass-panel sector-card sector-card--disabled p-5 rounded-2xl flex items-start gap-4 border border-slate-300/30 dark:border-white/5 opacity-70"
-                disabled
-                aria-disabled="true"
+                class="glass-panel sector-card p-5 rounded-2xl card-glow flex items-start gap-4 border border-emerald-500/20"
+                data-sector-url="https://emin-public-sector.vercel.app/"
+                data-sector-name="Public Sector"
                 aria-pressed="false">
-                <div class="w-12 h-12 shrink-0 bg-slate-400/10 border border-slate-400/20 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🛍️</div>
+                <div class="w-12 h-12 shrink-0 bg-sky-500/10 border border-sky-500/20 text-sky-600 dark:text-sky-400 rounded-xl flex items-center justify-center text-xl shadow-inner">🏛️</div>
                 <div class="min-w-0">
                     <div class="flex items-center gap-2 mb-1 flex-wrap">
-                        <h5 class="text-base font-bold tracking-tight">Emin for Retail</h5>
-                        <span class="text-[9px] font-mono font-extrabold text-slate-500 dark:text-slate-400 bg-slate-400/10 px-2 py-0.5 rounded-full uppercase shrink-0">Coming Soon</span>
+                        <h5 class="text-base font-bold tracking-tight">Emin for Public Sector</h5>
+                        <span class="text-[9px] font-mono font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full uppercase shrink-0">Live</span>
+                        <span class="sector-active-tag items-center gap-1 text-[9px] font-mono font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full uppercase shrink-0" style="display:none">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>Playing
+                        </span>
                     </div>
-                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed text-left">In-store and online shopping assistants for browsing, product FAQs, and customer support.</p>
+                    <p class="text-slate-500 dark:text-gray-400 text-xs leading-relaxed text-left">Citizen service assistants for public inquiries, permits, and government FAQs.</p>
                 </div>
             </button>
 
